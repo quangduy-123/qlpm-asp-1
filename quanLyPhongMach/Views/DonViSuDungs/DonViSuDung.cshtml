@@ -1,0 +1,94 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.DonViSuDung>
+
+@{
+    ViewBag.Title = "Đơn Vị - Hệ Thống";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+
+<div class="container">
+    <h2>Đơn Vị</h2>
+    <br />
+
+    <p>
+        <button class="btn_class">
+            @Html.ActionLink("Thêm Mới ", "ThemMoiDonVi")
+        </button>
+    </p>
+
+
+    <table class="table">
+        <tr>
+            <th>
+                <p>STT</p>
+            </th>
+            <th>
+                <p>Tên Đơn Vị</p>
+            </th>
+            <th>
+                <p>Tên Phòng Mạch</p>
+            </th>
+            <th>
+                <p>Địa Chỉ</p>
+            </th>
+            <th>
+                <p>Điện Thoại</p>
+            </th>
+            <th>
+                <p>Fax</p>
+            </th>
+            <th>
+                <p>Email</p>
+            </th>
+            <th>
+                <p>Mã Số Thuế</p>
+            </th>
+            <th></th>
+        </tr>
+
+        @{ var stt = 1;}
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => b.TenDonVi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => b.TenPM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => b.DiaChiPM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => b.DienThoaiPM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => b.FaxPM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => b.EmailPM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => b.MaSoThuePM)
+                </td>
+                <td>
+                    <button class="btn_class">
+                        @Html.ActionLink("Sửa", "SuaDonVi", new { id = b.IDDonVi })
+                    </button>
+                    <button class="btn_class">
+                        @Html.ActionLink("Xóa", "XoaDonVi", new { id = b.IDDonVi })
+                    </button>
+
+                </td>
+            </tr>
+            stt++;
+        }
+
+    </table>
+
+</div>

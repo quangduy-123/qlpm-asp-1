@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "Khám Bệnh";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/ChucNang.css")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    @Styles.Render("~/Assets/CSS/ChucNang/Reponsive-chucnang.css")
+}
+<style>
+    .form-inlsiness {
+        display: flex;
+        gap: 10px
+    }
+
+    input#SearchString22 {
+        width: 300px;
+        height: 41px;
+    }
+
+    select#MaHSDropdown {
+        width: 185px;
+    }
+
+    select#MaBSDropdown {
+        width: 185px;
+    }
+
+    input[type="date"] {
+        height: 33px;
+    }
+    .tt1 {
+        display: flex;
+        gap: 10px;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+</style>
+
+<div class="container ">
+    <div class="tt1x">
+        <div class="kb-1">
+            <div class="tool-bar-1">
+                <div class="x1">
+                    <p>Từ</p>
+                    <input type="date" />
+                </div>
+                <div class="x1">
+                    <p>Đến </p>
+                    <input type="date" />
+                </div>
+                <div class="x1">
+                   <button class="btn_class">
+                       <a href="~/ChucNang/DanhSachBenhNhan">Danh Sách Bệnh Nhân</a>
+                   </button>
+                </div>
+            </div>
+            <div class="kb-1-body">
+
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active">
+                        <div class="table-a">
+                            <table id="xmxkxk222" style="margin-top:-2px" class="table">
+                                <tr>
+                                    <th style="width:30px"></th>
+                                    <th><p>Tên Bệnh Nhân</p></th>
+                                    <th><p>Lần Khám</p></th>
+                                    <th><p>Chẩn Đoán</p></th>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="btnx">
+                            <div class="form-group form-inlsiness">
+                                @Html.TextBox("SearchString22", "", new { @class = "form-control" })
+                                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+                                <button class="btn_class btn-defaulstss">Hủy Khám</button>
+                                <button class="btn_class btn-defaulstss">Tạo Mới</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <div class="table-a">
+                            <table id="xmxkxk222" style="margin-top:-2px" class="table">
+                                <tr>
+                                    <th style="width:30px"></th>
+                                    <th><p>Tên Bệnh Nhân</p></th>
+                                    <th><p>Lần Khám</p></th>
+                                    <th><p>Chẩn Đoán</p></th>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="btnx">
+                            <div class="form-group form-inlsiness">
+                                @Html.TextBox("SearchString22", "", new { @class = "form-control" })
+                                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+
+                                <button class="btn_class btn-defaulstss">Tạo Mới</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="menu2" class="tab-pane fade">
+                        <div class="table-a">
+                            <table id="xmxkxk222" style="margin-top:-2px" class="table">
+                                <tr>
+                                    <th style="width:30px">STT</th>
+                                    <th><p>Tên Bệnh Nhân</p></th>
+                                    <th><p>Lần Khám</p></th>
+                                    <th><p>Chẩn Đoán</p></th>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="btnx">
+                            <div class="form-group form-inlsiness">
+                                @Html.TextBox("SearchString22", "", new { @class = "form-control" })
+                                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+                                <button class="btn_class btn-defaulstss">Xóa Hết</button>
+                                <button class="btn_class btn-defaulstss">Tạo Mới</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#home">Chờ Khám</a></li>
+                    <li><a data-toggle="tab" href="#menu1">Đã Khám</a></li>
+                    <li><a data-toggle="tab" href="#menu2">Hủy Khám</a></li>
+
+                </ul>
+            </div>
+        </div>
+      
+    </div>
+</div>

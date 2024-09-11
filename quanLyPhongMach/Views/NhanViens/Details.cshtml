@@ -1,0 +1,239 @@
+﻿@model quanLyPhongMach.Models.NhanVien
+
+
+@{
+    ViewBag.Title = " Chi Tiết  Danh Sách Nhân Viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+
+<style>
+    .delete-nhanvien {
+        color: black;
+        width: 1200px;
+        border: 1px solid black;
+        padding: 10px;
+        margin: auto auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cc {
+        width: 290px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-fo2m {
+        margin: 15px 54px;
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .form-x2 {
+        width: auto;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        border: 1px solid white;
+        padding: 10px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-default {
+        text-decoration: none;
+        color: white;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #2e6da4;
+    }
+
+        .btn-default:hover {
+            background-color: #286090;
+            border-color: #204d74;
+        }
+
+    .cc4 {
+        display: grid;
+        grid-template-columns: 33% 33% 34%;
+        grid-auto-rows: 40px;
+    }
+</style>
+<div class="container">
+    <div class="delete-nhanvien">
+        <h2>Chi Tiết Nhân Viên</h2>
+        <div class="nxo2">
+            <h4 style="margin-bottom:15px;">Nhân Viên Hiện Tại</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <br />
+                <div class="cc4">
+                    <div class="cc">
+                        <dt>
+                            <p>Tên Nhân Viên :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TenNV)
+                        </dd>
+                    </div>
+
+
+                    <div class="cc">
+                        <dt>
+                            <p>Giới Tính :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Phai)
+                        </dd>
+                    </div>
+                    <div class="cc">
+                        <dt>
+                            <p>Ngày Sinh :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.NgaySinh)
+                        </dd>
+
+                    </div>
+                </div>
+
+
+                <div class="cc4">
+                    <div class="cc">
+                        <dt>
+                            <p>Địa Chỉ :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DiaChi)
+                        </dd>
+                    </div>
+
+                    <div class="cc">
+                        <dt>
+                            <p>Điện Thoại :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DienThoai)
+                        </dd>
+                    </div>
+
+                    <div class="cc">
+                        <dt>
+                            <p>Chuyên Môn :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ChuyenMon)
+                        </dd>
+                    </div>
+                </div>
+
+
+                <div class="cc4">
+                    <div class="cc">
+                        <dt>
+                            <p>Ngoại Ngữ :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.NgoaiNgu)
+                        </dd>
+                    </div>
+
+                    <div class="cc">
+                        <dt>
+                            <p>Chức Vụ :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ChucVu)
+                        </dd>
+
+                    </div>
+
+                    <div class="cc">
+                        <dt>
+                            <p>Tài Khoản :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TaiKhoan)
+                        </dd>
+                    </div>
+                </div>
+
+                <div class="cc4">
+                    <div class="cc">
+                        <dt>
+                            <p>Mật Khẩu :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.MatKhauTC)
+                        </dd>
+                    </div>
+
+
+                    <div class="cc">
+                        <dt>
+                            <p>Ghi Chú :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.GhiChu)
+                        </dd>
+                    </div>
+
+
+                    <div class="cc">
+                        <dt>
+                            <p> Tên Đơn Vị :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DonViSuDung.TenDonVi)
+                        </dd>
+                    </div>
+                </div>
+
+
+
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <div class="btn-fo2m">
+                        <button class="btn_class" id="btn-2xx">
+                            @Html.ActionLink("Sửa", "Edit", new { id = Model.MaNV })
+                        </button>
+                        <button class="btn_class" id="btn-x2x">
+                            @Html.ActionLink("Quay Trở Lại Trang Phân Quyền", "PhanQuyenNhanVien")
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Trang Chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+}
+
+@*
+    // @section + Tên   nhét đoạn vô
+    @RenderSection("Ten",false) @RenderSection("Ten",true)''*@
+
+<main>
+    <div class="thong-tin-phong-mach">
+        <div class="logo-ttpm">
+            <a href="~/Home/Index">
+                <img id="logo" src="~/Assets/IMGS/logo.png" />
+            </a>
+        </div>
+        <div class="information-dvsd">
+            <h1 id="content-dvsd"  class="pulsating-text"> phần mềm quản lý phòng mạch</h1>
+            <div class="dvsd">
+                <p class="p-dvsd">
+                    Địa Chỉ :
+                </p>
+                <p class="p-dvsd">
+                    138 Phạm Thị Tánh, Phường 4, Quận 8, Tp. Hồ Chí Minh
+                </p>
+            </div>
+            <div class="dvsd">
+                <p class="p-dvsd">
+                    Liên hệ :
+                </p>
+                <p class="p-dvsd">
+                    +84 0287773778 / 0933 86 8086 / 0903936755
+                </p>
+            </div>
+            <div class="dvsd">
+                <p class="p-dvsd">
+                    Hotline :
+                </p>
+                <p class="p-dvsd">
+                    1800 1526
+                </p>
+            </div>
+            <div class="dvsd">
+                <p class="p-dvsd">
+                    Website :
+                </p>
+                <p class="p-dvsd">
+                    https://taa.vn/#/main-home
+                </p>
+            </div>
+        </div>
+    </div>
+</main>

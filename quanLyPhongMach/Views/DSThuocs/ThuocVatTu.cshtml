@@ -1,0 +1,492 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.DSThuoc>
+
+@{
+    ViewBag.Title = "Thuốc Vật Tư";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+
+<style>
+    input#SearchString {
+        width: 300px;
+        height: 33px;
+    }
+
+    .toolbar-thuoc-vat-tu {
+        width: auto;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-thuoc-vat-tu {
+        display: flex;
+        gap: 15px;
+    }
+
+    .form-them-thuoc-moi {
+        width: auto;
+        height: auto;
+        border: 1px solid #333;
+        border-radius: 6px;
+        padding: 5px;
+        margin-top: 15px;
+    }
+
+    .dr-1-1 {
+        display: flex;
+        justify-content: space-between;
+        width: 300px;
+        height: auto;
+    }
+
+        .dr-1-1 p {
+            font-weight: bold;
+        }
+
+    .dr-1 {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    select#LoaiDropdown,
+    select#DonViDropdown,
+    select#HangSanXuatDropdown,
+    select#QuocGiaDropdown {
+        width: 192px;
+        height: 21px;
+    }
+
+    .table-driactobox {
+        width: auto;
+        display: flex;
+        gap: 20px
+    }
+
+    button#btn_them_Moi {
+        height: 52px;
+    }
+
+    .dr-2 {
+        display: flex;
+        gap: 15px;
+    }
+
+    #btn_plus {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 22px
+    }
+
+    .form_ttpm {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 150px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        -webkit-animation-name: slideIn112;
+        -webkit-animation-duration: 1.4s;
+        animation-name: slideIn112;
+        animation-duration: 1.4s;
+    }
+
+    #ttpm_form {
+        width: 350px;
+        height: auto;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        border: 1px solid #000;
+    }
+
+
+
+    #ttpm_content {
+        width: auto;
+        height: auto;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #333;
+    }
+
+    #close_infor {
+        background: none;
+    }
+
+        #close_infor:hover {
+            cursor: pointer;
+        }
+
+    input[type="text"] {
+        padding: 0 10px;
+    }
+
+    .nkl {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .nkt_body {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px
+    }
+
+    input[type="date"] {
+        width: 193px;
+    }
+
+    select#NhaCungCapDropdown {
+        width: 193px;
+    }
+
+    .btn0-nhap {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        padding: 10px;
+        margin-top: -10px;
+    }
+</style>
+
+<div class="container">
+    <div class="toolbar-thuoc-vat-tu">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inliness">
+                @Html.TextBox("SearchString", "", new { @class = "form-control" })
+                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+            </div>
+        }
+
+        <div class="btn-thuoc-vat-tu">
+            <a href="~/ChucNang/NhapThuoc">
+                <button id="btn_nhap-kho-thuoc" class="btn_class btn-defaultssxs">
+                    Nhập Kho Thuốc
+                </button>
+            </a>      
+        </div>
+    </div>
+    <div class="form-them-thuoc-moi">
+        <div class="h111-them-thuoc-moi">
+            <p style="font-weight:bold;font-size:22px">Thêm Thuốc Mới</p>
+        </div>
+        <div class="table-driactobox">
+            <div class="dr-2">
+                <div class="dr-1">
+                    <div class="dr-1-1">
+                        <p>Tên Thuốc :</p>
+                        <input type="text" class="form-control" width="300" value="" />
+                    </div>
+                    <div class="dr-1-1">
+                        <p>Hoạt Chất :</p>
+                        <input type="text" class="form-control" width="300" value="" />
+                    </div>
+                </div>
+                <div class="dr-1">
+                    <div class="dr-1-1">
+                        <p>Loại:</p>
+                        @Html.DropDownList("IDLoai", (IEnumerable<SelectListItem>)ViewBag.ltt, "Chọn loại", new { @class = "form-control", id = "LoaiDropdown" })
+                    </div>
+                    <div class="dr-1-1">
+                        <p>Đơn vị:</p>
+                        @Html.DropDownList("IDDonVi", (IEnumerable<SelectListItem>)ViewBag.dvtt, "Chọn Đơn Vị", new { @class = "form-control", id = "DonViDropdown" })
+                    </div>
+                </div>
+            </div>
+            <div class="dr-2">
+                <div class="dr-1">
+                    <div class="dr-1-1">
+                        <p>Giá Bán :</p>
+                        <input type="text" class="form-control" width="300" value="" />
+                    </div>
+                    <div class="dr-1-1">
+                        <p>Hãng SX :</p>
+                        @Html.DropDownList("MaHangSanXuat", (IEnumerable<SelectListItem>)ViewBag.hsxx, "Chọn Hãng Sản Xuất", new { @class = "form-control", id = "HangSanXuatDropdown" })
+                    </div>
+                </div>
+                <div class="dr-1">
+                    <div class="dr-1-1">
+                        <p>Nước SX :</p>
+                        @Html.DropDownList("MaQuocGia", (IEnumerable<SelectListItem>)ViewBag.qgg, "Chọn Quốc Gia", new { @class = "form-control", id = "QuocGiaDropdown" })
+                    </div>
+                    <div class="dr-1-1">
+                        <p>Ghi Chú :</p>
+                        <input type="text" class="form-control" width="300" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="dr-1">
+                <button id="btn_them_Moi" class="btn_class btn-defaultsss">Thêm Mới</button>
+            </div>
+        </div>
+    </div>
+    <div class="form-table-dsthuoc">
+        <table id="xmxkxk" class="table">
+            <tr>
+                <th style="width:30px"><button id="btn_plus">+</button></th>
+                <th>STT</th>
+                <th><p>Tên Thuốc</p></th>
+                <th><p>Hoạt Chất</p></th>
+                <th><p>Tên Loại</p></th>
+                <th><p>Đơn Vị</p></th>
+                <th><p>SLT</p></th>
+                <th><p>Giá Bán(VNĐ)</p></th>
+                <th><p>Hãng SX</p></th>
+                <th><p>Nước SX</p></th>
+                <th><p>Ghi Chú</p></th>
+                <th></th>
+            </tr>
+            @{
+                var stt = 1;
+            }
+            @foreach (quanLyPhongMach.Models.DSThuoc thuoc in ViewBag.dst)
+            {
+                <tr>
+                    <td></td>
+                    <td>@stt</td>
+                    <td>@Html.DisplayFor(modelItem => thuoc.TenThuoc)</td>
+                    <td>@Html.DisplayFor(modelItem => thuoc.HoatChat)</td>
+                    <td>
+                        @foreach (quanLyPhongMach.Models.LoaiThuoc lst in ViewBag.ltts)
+                        {
+                            if (thuoc.LoaiThuoc == lst.IDLoai)
+                            {
+                                <p>@Html.DisplayFor(modelItem => lst.TenLoai)</p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @foreach (quanLyPhongMach.Models.DonViTinh lstt in ViewBag.dvvv)
+                        {
+                            if (thuoc.DonVi == lstt.IDDonVi)
+                            {
+                                <p>@Html.DisplayFor(modelItem => lstt.DonViThuoc)</p>
+                            }
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => thuoc.SoLuongTon)</td>
+                    <td>
+                        @foreach (quanLyPhongMach.Models.DMKhoThuoc kt in ViewBag.ktt)
+                        {
+                            if (thuoc.MaThuoc == kt.MaThuoc)
+                            {
+                                <p>@Html.DisplayFor(modelItem => kt.GiaBan)</p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @foreach (quanLyPhongMach.Models.tb_HangSanXuat hsx in ViewBag.hsxx1)
+                        {
+                            if (thuoc.MaHangSanXuat == hsx.MaHangSanXuat)
+                            {
+                                <p>@Html.DisplayFor(modelItem => hsx.TenHangSanXuat)</p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @foreach (quanLyPhongMach.Models.QuocGia qg in ViewBag.qg1)
+                        {
+                            if (thuoc.MaQuocGia == qg.MaQuocGia)
+                            {
+                                <p>@Html.DisplayFor(modelItem => qg.TenQuocGia)</p>
+                            }
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => thuoc.GhiChu)</td>
+                    <td>
+                        <button class="btn_class cs">@Html.ActionLink("Sửa", "SuaThuocVatTu", new { id = thuoc.MaThuoc })</button>
+                        <button class="btn_class cs">@Html.ActionLink("Chi Tiết", "ChiTietToaThuocVatTu", new { id = thuoc.MaThuoc })</button>
+                        <button class="btn_class cs">@Html.ActionLink("Xóa", "XoaVatTu", new { id = thuoc.MaThuoc })</button>
+                    </td>
+                </tr>
+                stt++;
+            }
+        </table>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    var btn1xx = document.getElementById('btn-tao-moix');
+
+
+    btn1xx.addEventListener('click', function () {
+
+        location.reload();
+    });
+
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('#xmxkxk tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                    var tdText = $(this).find('td:eq(1)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // tạo event thêm ms
+        document.getElementById('btn_them_Moi').addEventListener('click', function () {
+            // Lấy giá trị từ các  form nhập
+            var tenThuoc = document.querySelector('.dr-1-1 input[type="text"][value]').value;
+            var hoatChat = document.querySelectorAll('.dr-1-1 input[type="text"]')[1].value;
+            var loai = document.getElementById('LoaiDropdown').value;
+            var donVi = document.getElementById('DonViDropdown').value;
+            var giaBan = document.querySelectorAll('.dr-1-1 input[type="text"]')[2].value;
+            var hangSX = document.getElementById('HangSanXuatDropdown').value;
+            var nuocSX = document.getElementById('QuocGiaDropdown').value;
+            var ghiChu = document.querySelectorAll('.dr-1-1 input[type="text"]')[3].value;
+
+            // Tạo một đối tượng data mới thuocMoi
+            var thuocMoi = {
+                tenThuoc: tenThuoc,
+                hoatChat: hoatChat,
+                loai: loai,
+                donVi: donVi,
+                giaBan: giaBan,
+                hangSX: hangSX,
+                nuocSX: nuocSX,
+                ghiChu: ghiChu
+            };
+
+            // Thêm dữ liệu vào bảng hiển thị
+            var table = document.getElementById('xmxkxk');
+            //tạo ra 1 hàng tr
+            var newRow = table.insertRow(-1);
+            // -1 là cuối bảng
+
+            var cellIndex = 0;
+            // key dùng để duyệt các thuộc tính đối tượng
+            for (var key in thuocMoi) {
+                // tạo thẻ td
+                var newCell = newRow.insertCell(cellIndex++);
+                newCell.innerHTML = thuocMoi[key];
+            }
+
+            // Xóa nội dung của các trường input sau khi thêm mới thành công
+            var inputs = document.querySelectorAll('.dr-1-1 input[type="text"]');
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].value = '';
+            }
+        });
+    });
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var boxycht = document.getElementById("box_ttpm_nhap_kho");
+        var ychtButtonsssx = document.getElementById("btn_plus");
+        var closeButton1 = document.getElementById("btn_dong");
+
+        boxycht.style.display = "none";
+
+        ychtButtonsssx.addEventListener("click", function () {
+            if (boxycht.style.display === "none") {
+                boxycht.style.display = "block";
+            } else {
+                boxycht.style.display = "none";
+            }
+        });
+
+        closeButton1.addEventListener("click", function () {
+            boxycht.style.display = "none";
+        });
+    });
+
+
+</script>
+
+
+@*Bảng Thêm Thuốc*@
+<div id="box_ttpm_nhap_kho" class="form_ttpm">
+    <div id="ttpm_form">
+        <div id="ttpm_content">
+            <p style="font-size: 20px; color: white;">Nhập Kho Thuốc</p>
+
+        </div>
+        <div class="nkt_body">
+            <div class="nkl">
+                <p>Thuốc :</p>
+                <input type="text" width="300" />
+            </div>
+            <div class="nkl">
+                <p>Đơn Vị :</p>
+                @Html.DropDownList("IDDonVi", (IEnumerable<SelectListItem>)ViewBag.dvtt, "Chọn Đơn Vị", new { @class = "form-control", id = "DonViDropdown" })
+            </div>
+            <div class="nkl">
+                <p>Số Lô :</p>
+                <input type="text" value="1" width="300" />
+            </div>
+            <div class="nkl">
+                <p>Số Lượng :</p>
+                <input type="text" width="300" />
+            </div>
+            <div class="nkl">
+                <p>Giá Nhập :</p>
+                <input type="text" width="300" />
+            </div>
+            <div class="nkl">
+                <p>VAT :</p>
+                <input type="text" width="300" />
+            </div>
+            <div class="nkl">
+                <p>Giá Bán :</p>
+                <input type="text" width="300" />
+            </div>
+            <div class="nkl">
+                <p>Ngày Nhập:</p>
+                <input type="date" width="300" />
+            </div>
+            <div class="nkl">
+                <p>Ngày Hết Hạn:</p>
+                <input type="date" width="300" />
+            </div>
+            <div class="nkl">
+                <p>Nhà Cung Cấp :</p>
+                @Html.DropDownList("ID", (IEnumerable<SelectListItem>)ViewBag.nhaucungcaps, "Chọn Nhà Cung Cấp", new { @class = "form-control", id = "NhaCungCapDropdown" })
+            </div>
+        </div>
+        <div class="btn0-nhap">
+            <button class="btn_class" id="nhapkho">
+                Nhập Kho
+            </button>
+            <button class="btn_class" id="btn_dong">
+                Đóng
+            </button>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Lịch Sử Khám";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Assets/CSS/ChucNang.css" rel="stylesheet" />
+}
+
+<div class="container">
+    <div class="tool1">
+        <div class="tool-bar-1">
+            <div class="x2">
+                <p>Từ</p>
+                <input type="date" style="height:33px" />
+            </div>
+            <div class="x2">
+                <p>Đến</p>
+                <input type="date" style="height:33px" />
+            </div>
+            <button class="btn_class">Lấy Dữ Liệu</button>
+        </div>
+        <div class="form-group form-inliness">
+            @Html.TextBox("SearchString", "", new { @class = "form-control" })
+            <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+        </div>
+    </div>
+    <div class="lsk">
+        <div class="tbtb">
+            <table id="xmxkxk222" style="margin-top:-2px" class="table">
+                <tr>
+                    <th style="width:30px"></th>
+                    <th><p>Tên Bệnh Nhân</p></th>
+                    <th><p>Lần Khám</p></th>
+                    <th><p>Ngày khám</p></th>
+                    <th><p>Bác Sĩ</p></th>
+
+                </tr>
+            </table>
+        </div>
+        <div class="tbtb">
+            <table id="xmxkxk222" style="margin-top:-2px" class="table">
+                <tr>
+                    <th style="width:30px;height:30px"></th>
+                    <th><p></p></th>
+
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="bnt-x" style="margin-top:11px;">
+        <button class="btn_class">
+            Xóa Lịch Sử Khám
+        </button>
+    </div>
+
+</div>
+

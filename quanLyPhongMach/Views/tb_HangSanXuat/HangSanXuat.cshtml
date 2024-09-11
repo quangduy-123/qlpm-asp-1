@@ -1,0 +1,94 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.tb_HangSanXuat>
+
+@{
+    ViewBag.Title = "Hãng Sản Xuất";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    input#searchQuery {
+        height: 33px;
+        width: 250px;
+    }
+
+    .form-group {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .toolbar-tk-1 {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .tktk {
+        display: flex;
+        gap: 15px;
+    }
+
+    .toolbar-tk {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    .skk12 {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+</style>
+
+
+<div class="container">
+   <h2>Hãng Sản Xuất</h2>
+    <br />
+    <button class="btn_class">
+        @Html.ActionLink("Thêm Mới", "ThemMoiHangSanXuat")
+    </button>
+    <table class="table">
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+              Tên Hãng Sản Xuất
+            </th>
+            <th>
+               Ghi Chú
+            </th>
+            <th></th>
+        </tr>
+        @{ 
+            var stt = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@stt</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenHangSanXuat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GhiChu)
+                </td>
+                <td>
+                    <button class="btn_class">
+                        @Html.ActionLink("Sửa", "SuaHangSanXuat", new { id = item.MaHangSanXuat })
+                    </button>
+                    <button class="btn_class">
+                        @Html.ActionLink("Xóa", "XoaHangSanXuat", new { id = item.MaHangSanXuat })
+                    </button>
+                </td>
+            </tr>
+            stt++;
+        }
+
+    </table>
+
+</div>

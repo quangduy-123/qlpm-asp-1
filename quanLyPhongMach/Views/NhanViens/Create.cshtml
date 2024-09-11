@@ -1,0 +1,285 @@
+﻿@model quanLyPhongMach.Models.NhanVien
+
+@{
+    ViewBag.Title = " Thêm Mới Danh Sách Nhân Viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    .content {
+        color: black;
+        font-size: 20px
+    }
+
+    li {
+        color: white;
+    }
+
+
+    .form-group {
+        width: 360px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input#NgaySinh {
+        width: 194px;
+    }
+
+    select#DonVi {
+        width: 194px;
+    }
+
+    .btn-fo2m {
+        margin: 0 auto;
+    }
+
+    .form-x2 {
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        border: 1px solid black;
+        padding: 10px;
+        color: black;
+    }
+
+    .btn-default {
+        text-decoration: none;
+        color: white;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #2e6da4;
+    }
+
+        .btn-default:hover {
+            background-color: #286090;
+            border-color: #204d74;
+        }
+
+    input#TaiKhoan, input#ChuyenMon {
+        width: 194px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .form-horizontal {
+        display: grid;
+        grid-template-columns: 33% 33% 34%;
+        grid-auto-rows: 40px;
+    }
+
+    .form-group1 {
+        width: 1200px;
+    }
+
+    /*Popup*/
+    .popup {
+        width: 400px;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        border: 0.5px solid #333;
+        visibility:hidden
+    }
+
+   
+
+    .popup img  {
+        width:100px;
+        margin-top:-50px;
+        border-radius:50%;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .popup h2 {
+        font-size: 38px;
+        font-weight:500;
+        margin: 30px 0 10px;
+    }
+
+        .popup #btn_btn {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6fd649;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+
+</style>
+
+
+<div class="container">
+    <div class="form-x2">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <h4 style="color:black;font-size:24px;margin-bottom:22px;">Thêm Mới Nhân Viên</h4>
+            <div class="form-horizontal">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <p class="content">Tên Nhân Viên :</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenNV, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="content">Giới Tính :</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Phai, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Phai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="content">Ngày Sinh :</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="content">Địa Chỉ :</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="content">Điện Thoại :</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.DienThoai, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="content">Chuyên Môn:</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ChuyenMon, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChuyenMon, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="content">Ngoại Ngữ :</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NgoaiNgu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NgoaiNgu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <p class="content">Chức Vụ :</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ChucVu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ChucVu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="content">Tài Khoản:</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TaiKhoan, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TaiKhoan, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="content">Mật Khẩu:</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MatKhauTC, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MatKhauTC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <p class="content">Ghi Chú :</p>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.GhiChu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <p class="content">Tên Đơn Vị :</p>
+                    <div class="col-md-10">
+                        @Html.DropDownList("DonVi", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.DonVi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group1">
+                    <div class="col-md-offset-2 col-md-10" style=" display:flex;justify-content:center;gap:15px;margin-top:12px;">
+                        <input type="submit" value="Thêm Mới" id="bnx" onclick="openPopup()" class="btn btn-default" />
+                        <button class="btn_class" id="btn-x2x">
+                            @Html.ActionLink("Quay Trở Lại Trang Phân Quyền", "PhanQuyenNhanVien")
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+        
+    </div>
+
+
+
+</div>
+
+
+@*Thông Báo*@
+<div class="popup" id="popup">
+    <img src="~/Assets/IMGS/404-tick.png"  alt="tich-xm"/>
+    <h2>Cảm Ơn</h2>
+    <p>Bạn Đã Thêm Thành Công Nhân Viên</p>
+    
+</div>
+
+
+
+
+
+<script>
+    var popupTimeout;
+
+    function openPopup() {
+        var popup = document.getElementById("popup");
+        popup.style.visibility = "visible";
+        popupTimeout = setTimeout(closePopup, 10000); 
+    }
+
+    function closePopup() {
+        var popup = document.getElementById("popup");
+        popup.style.visibility = "hidden";
+        clearTimeout(popupTimeout); 
+    }
+</script>

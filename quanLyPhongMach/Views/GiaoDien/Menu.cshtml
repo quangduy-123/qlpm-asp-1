@@ -1,0 +1,104 @@
+﻿
+
+
+@{
+    @Styles.Render("~/Assets/CSS/Home.css")
+}
+
+<style>
+    .menu a.active {
+        background-color: #f00; 
+        color: #fff; 
+    }
+</style>
+
+<div id="home_menutop">
+    <ul class="menu">
+
+        <li class="submenu_all )">
+            <a href="~/Home/Index">Trang chủ</a>
+        </li>
+        <li class="submenu_all )">
+            <a href="#">Người dùng</a>
+            <ul class="submenu">
+                <li ><a href="~/Home/ThongTinNguoiDung">Thông tin tài khoản</a></li>
+                <li id="xxx" ><a href="/Home/DangXuat">Đăng Xuất</a></li>
+            </ul>
+        <li class="submenu_all">
+            <a href="#">Danh Mục</a>
+            <ul class="submenu">
+                <li class="submenu_li_dmc">
+                    <a href="#">Danh Mục</a>
+                    <ul class="submenu_dmcc">
+                        <li><a href="~/DSThuocs/ThuocVatTu">Thuốc - Vật tư</a></li>
+                        <li><a href="~/LoaiThuocs/LoaiThuoc">Loại thuốc</a></li>
+                        <li><a href="~/DSThuocs/ToaThuocMau">Toa thuốc mẫu</a></li>
+                        <li><a href="~/DonViTinhs/DonViTinh">Đơn vị tính</a></li>
+                        <li><a href="~/tb_HangSanXuat/HangSanXuat">Hãng Sản Xuất</a></li>
+                        <li><a href="~/NhaCungCaps/NhaCungCap">Nhà cung cấp</a></li>
+                        <li><a href="~/tb_CanLamSang/CanLamSang">Cận lâm sàng</a></li>
+                        <li><a href="~/tb_ChanDoan/ChanDoan">Chuẩn đoán</a></li>
+                        <li><a href="~/tb_ChiDinh/ChiDinh">Chỉ định</a></li>
+                        <li><a href="~/QuocGias/QuocGia">Quốc gia</a></li>
+                        <li><a href="~/tb_ThanhPho/ThanhPhoVaQuanHuyen">Thành Phố - Huyện</a></li>
+                    </ul>
+                </li>
+                <li><a href="~/CacDichVuKham/CacDichVuKham">Dịch Vụ</a></li>
+            </ul>
+        </li>
+        <li class="submenu_all">
+            <a href="Page1.aspx">Chức Năng</a>
+            <ul class="submenu">
+                <li>
+                    <a href="/chuc-nang-kham-benh">Khám Bệnh</a>
+                    <ul class="submenu_dmcc">
+                        <li><a href="~/ChucNang/KhamBenh">Khám bệnh</a></li>
+                        <li><a href="~/ChucNang/LichSuKham">Lịch sử khám</a></li>
+                    </ul>
+                </li>
+                <li><a href="~/ChucNang/ThanhToanDichVu">Thanh Toán Dịch Vụ</a></li>
+                <li><a href="~/ChucNang/NhapThuoc">Nhập thuốc</a></li>
+                <li>
+                    <a href="#">Bán thuốc</a>
+                    <ul class="submenu_dmcc">
+                        <li><a href="~/ChucNang/BanThuoc">Bán thuốc</a></li>
+                        <li><a href="~/ChucNang/ChungTuXuat">Chứng từ xuất</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="~/ChucNang/HoSoBenhNhan">Hồ Sơ BN</a></li>
+                <li><a href="~/ChucNang/LichHen">Lịch Hẹn</a></li>
+                <li><a href="~/ChucNang/TongHop">Tổng hợp</a></li>
+            </ul>
+        </li>
+        <li class="submenu_all">
+            <a href="Page1.aspx">Thống Kê</a>
+            <ul class="submenu">
+                <li>
+                    <a href="#">Thống Kê</a>
+                    <ul class="submenu_dmcc">
+                        <li><a href="~/ThongKe/ThongKeBanThuoc">Thống kê bán thuốc</a></li>
+                        <li><a href="~/ThongKe/ThongKeNhapXuat">Thống kê nhập xuất</a></li>
+                        <li><a href="~/ThongKe/ThongKeKhoThuoc">Thống kê tồn kho thuốc</a></li>
+                        <li><a href="~/ThongKe/ThongKeLaiBanThuoc">Thông kê lãi bán thuốc</a></li>
+                        <li><a href="~/ThongKe/ThongKeThuKham">Thống kê thu khám</a></li>
+                    </ul>
+
+                </li>
+            </ul>
+        </li>
+        <li class="submenu_all">
+            <a href="Page1.aspx">Hệ Thống</a>
+            <ul class="submenu">
+                <li><a href="~/HeThong/NguoiDung">Người Dùng</a></li>
+                <li><a href="~/DonViSuDungs/ThongTinPhongMach">Thông Tin Phòng Mạch</a></li>
+                <li id="ttpm_button"><a href="~/DonViSuDungs/DonViSuDung">Đơn Vị</a></li>
+                <li><a href="~/NhanViens/PhanQuyenNhanVien">Phân Quyền</a></li>
+                <li id="button_ychts"><a href="~/HeThong/YeuCauHeThong">Yêu cầu hệ thống</a></li>
+            </ul>
+        </li>
+    </ul>
+
+
+
+</div>

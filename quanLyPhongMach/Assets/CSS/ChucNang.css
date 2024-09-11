@@ -1,0 +1,625 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: auto;
+    font-family: "Exo", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
+
+.container {
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+}
+
+
+.btn_class {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #2e6da4;
+}
+
+    .btn_class:hover {
+        background-color: #286090;
+        border-color: #204d74;
+    }
+
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px
+}
+
+    table th,
+    table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    table th {
+        background-color: #333;
+        color: white;
+    }
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+tr {
+    text-align: center;
+    width: auto;
+}
+
+
+table th:hover {
+    background-color: #555;
+    cursor: pointer;
+    table td:hover
+}
+
+table td:hover {
+    cursor: pointer;
+    background-color: #f5f5f5;
+}
+
+table tr:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+
+
+
+/*Thanh Toán Dịch Vụ*/
+
+input#SearchString {
+    height: 33px;
+    width: 311px;
+    margin-top: 10px;
+}
+
+.ttdv-1-1 {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+}
+
+.tool-bass {
+    width: auto;
+    height: auto;
+    display: flex;
+    gap: 15px;
+    margin-top: 10px
+}
+
+/*Nhập thuốc*/
+
+.input[type="date"] {
+    height: 33px;
+    padding: 5px;
+}
+
+.ttt-1 {
+    width: auto;
+    height: auto;
+    display: flex;
+    gap: 11px;
+    align-items: center;
+}
+
+.tool-left, .tool-right {
+    display: flex;
+    gap: 11px;
+    align-items: center
+}
+
+.tool-bar-nhap-thuoc {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-1 {
+    border: 1px solid #333;
+    width: auto;
+    height: 400px;
+    margin-top: 20px
+}
+
+
+.t-1111 {
+    display: flex;
+    gap: 10px;
+}
+
+.tt-112 {
+    display: flex;
+    gap: 10px;
+}
+
+.sskskk2 {
+    border: 1px solid #333;
+    height: 460px;
+    margin-top: 15px;
+}
+
+.talbe-222 {
+    border: 1px solid #333;
+    height: 460px;
+    margin-top: 15px;
+}
+
+.nhap-thuoc-2 {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.kdkd {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-top: 10px;
+    justify-content: flex-end;
+}
+
+
+/*Bán thuốc*/
+
+.kdks {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.tool-bar-ds-bn {
+    display: flex;
+    gap: 13px;
+}
+
+
+
+input.ss22s {
+    height: 33px;
+}
+
+.btn_22s {
+    display: flex;
+    gap: 12px;
+}
+
+.\32 xs {
+    display: FLEX;
+    gap: 12px;
+    align-items: center;
+}
+
+
+.tool-bar-don-thuoc {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.tktktk2 {
+    border: 1px solid #333;
+    height: 2000px;
+    margin-top: 64px;
+    width: 100%;
+}
+
+#xmxkxk12 {
+    margin-top: -10px
+}
+
+.kdk2x22 {
+    width: 100%;
+    display: flex;
+    gap: 10px
+}
+
+.dsbn-dakham {
+    width: auto
+}
+
+.don-thuoc-2s {
+    width: 100%;
+}
+
+
+/*Chứng từ xuất*/
+
+.date-time-masster {
+    height: 33px
+}
+
+.ctx-1 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.chung-tu-xuat-toolbar {
+    width: 100%;
+    display: flex;
+    gap: 11px;
+    align-items: center;
+}
+
+.ctx-body-table-draw-1 {
+    border: 1px solid #333;
+    height: 500px
+}
+
+#btn0-2x {
+    margin-top: 12px
+}
+
+
+.ctx-body-table-draw {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+}
+
+.txx2 {
+    width: 100%;
+}
+
+/*Thêm Bệnh Nhân*/
+.box-tbn {
+    width: 350px;
+    height: auto;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+.thong-tin-benh-nhan, .thong-tin-bac-si {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.thong-tin-bac-si {
+    margin-top: 20px
+}
+
+.ttbn1 {
+    display: flex;
+    justify-content: space-between
+}
+
+select#MaNVDropdown {
+    width: 200px;
+}
+
+.btn-x22 {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center
+}
+
+    .btn-x22 a {
+        text-decoration: none;
+        color: white;
+    }
+/*Hồ Sơ Bệnh Nhân*/
+#btn-x2-1 a {
+    text-decoration: none;
+    color: white;
+}
+
+.tool-bar-ho-so-benh-nhan {
+    width: 100%;
+    display: flex;
+    gap: 11px;
+}
+
+.tt {
+    display: flex;
+    justify-content: space-between;
+}
+
+.thong-tin {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid #333;
+}
+
+.tt-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px
+}
+
+.tt-content {
+    background-color: #333;
+    padding: 5px
+}
+
+select#MaBSDropdown {
+    width: 194px;
+}
+
+.tt1 {
+    display: flex;
+    justify-content: center
+}
+
+
+.btn_d2 {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+    .btn_d2 a {
+        text-decoration: none;
+        color: white
+    }
+
+.list-thong-tin {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px
+}
+
+.tolx-bar {
+    display: flex;
+    gap: 11px;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.ttt-bodtxs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    border: 1px solid #333;
+    padding: 5px;
+    margin-top: 20px;
+}
+/*Chờ Khám đã khám*/
+.form-action-chung {
+    border: 1px solid #333;
+    height: 600px
+}
+
+.tox a {
+    text-decoration: none;
+    color: white;
+}
+
+.tox {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px
+}
+
+
+
+/*Lịch Hẹn*/
+.tool-bar-1 {
+    width: auto;
+    display: flex;
+    gap: 11px;
+}
+
+.x1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+}
+
+.hen-gio {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 320px
+}
+
+
+.tltltl {
+    margin-top: 15px;
+    border: 1px solid #333;
+    height: 500px;
+    padding: 5px
+}
+
+.toolba-r2x {
+    display: flex;
+    gap: 12px
+}
+
+.x2 {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.bn {
+    margin-top: 20px
+}
+
+.th21 {
+    width: 100%;
+    display: flex;
+    gap: 50px;
+    margin-top: 20px
+}
+
+tool-bar-1 a {
+    text-decoration: none;
+    color: white;
+}
+
+.tbtb {
+    margin-top: 10px;
+    border: 1px solid #333;
+    height: 400px
+}
+
+/*Lịch Sử Khám*/
+.tool1 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tbtb {
+    width: 100%
+}
+
+.lsk {
+    display: flex;
+    gap: 10px
+}
+
+
+/*Khám Bệnh*/
+.x1 {
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+}
+
+.table-a {
+    border: 1px solid #333;
+    width: 100%;
+    height: 700px;
+    margin-bottom: 20px
+}
+
+.kb-1-body {
+    width: 100%;
+    margin-top: 20px
+}
+
+.kb-2 a {
+    text-decoration: none;
+    color: white;
+}
+
+.btnx {
+    width: 100%
+}
+
+.kb-form {
+    width: 100%;
+    display: flex;
+    gap: 30px;
+    margin-top: 20px
+}
+
+.tbx2 {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.t2x2 {
+    width: 100%;
+    height: 500px;
+    border: 1px solid #333;
+    margin-top: 15px
+}
+
+.tt1x {
+    width: 100%
+}
+
+.kb-1 {
+    width: 100%
+}
+
+.kb-2 {
+    width: 100%;
+    margin-top: 50px;
+}
+
+
+/*Toorng hop*/
+.th a {
+    text-decoration: none;
+    color: white;
+}
+
+
+
+.th-1-1 {
+    width: 100%;
+    margin-top: 10px
+}
+
+.th-1 {
+    width: 100%
+}
+
+th-2 {
+    width: 100%
+}
+
+.th {
+    width: 100%;
+    display: flex;
+    gap: 20px
+}
+
+
+
+
+
+.btn_class2 {
+    padding: 30px 50px;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #2e6da4;
+}
+
+    .btn_class2:hover {
+        background-color: #286090;
+        border-color: #204d74;
+    }
+
+.th-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.th-2-2 {
+    width: 100%;
+    display: flex;
+    gap: 10px
+}
+
+.th-2-1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}

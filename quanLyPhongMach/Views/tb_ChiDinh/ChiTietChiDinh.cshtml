@@ -1,0 +1,138 @@
+﻿@model quanLyPhongMach.Models.tb_ChiDinh
+
+@{
+    ViewBag.Title = " Chi Tiết Các Chỉ Định";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    h4 {
+        font-size: 22px
+    }
+
+
+    .ccss {
+        display: flex;
+        gap: 12px;
+    }
+
+    .form-group {
+        display: flex;
+        width: 360px;
+        justify-content: space-between;
+        padding : 5px 0;
+    }
+
+    .form-group1 {
+        display: flex;
+        width: 360px;
+        gap:10px;
+    }
+    .form-horizontal {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        border: 1px solid #333;
+        border-radius: 6px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /*Popup*/
+    .popup {
+        width: 400px;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        border: 0.5px solid #333;
+        visibility: hidden
+    }
+
+
+
+        .popup img {
+            width: 100px;
+            margin-top: -50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .popup h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+        }
+
+        .popup #btn_btn {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6fd649;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+</style>
+
+
+<div class="container">
+    <div class="form-horizontal">
+        <h4>Chi Tiết Chỉ Định</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <div class="form-group">
+                <dt>
+                    Tên Chỉ Định :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenChiDinh)
+                </dd>
+            </div>
+
+            <div class="form-group">
+                <dt>
+                    Đơn Giá :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DonGia)
+                </dd>
+            </div>
+
+            <div class="form-group">
+                <dt>
+                    Ghi Chú :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.GhiChu)
+                </dd>
+            </div>
+            <div class="form-group1">
+                <button class="btn_class">
+                    @Html.ActionLink("Sửa", "SuaChiDinh", new { id = Model.MaChiDinh })
+                </button>
+                <button class="btn_class">
+                    @Html.ActionLink("Quay Trở Lại", "ChiDinh")
+                </button>
+            </div>
+
+        </dl>
+    </div>
+    
+
+</div>

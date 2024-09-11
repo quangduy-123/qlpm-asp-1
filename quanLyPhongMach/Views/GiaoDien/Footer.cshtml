@@ -1,0 +1,42 @@
+﻿
+
+
+
+@{
+    @Styles.Render("~/Assets/CSS/Home.css")
+}
+
+<div id="main-footer">
+    <p id="footer-p">Phần Mềm Quản Lý Phòng Mạch</p>
+    <p>
+        @ViewBag.ChaoMungMessage
+    </p>
+    <p id="data-time"></p>
+</div>
+
+
+<script>
+    // cập nhật time
+    function updateTime() {
+        var now = new Date();
+        var day = now.getDate();
+        var month = now.getMonth() + 1;
+        var year = now.getFullYear();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+
+        var formattedTime = "Ngày " + day + " tháng " + month + " năm " + year + ", " + hour + ":" + minute + ":" + second;
+        document.getElementById("data-time").textContent = formattedTime;
+    }
+    //formater biến chứa chuỗi định dạng time được gắn vào
+    // Cập nhật thời gian từng giây
+    setInterval(updateTime, 1000);
+
+    // Cập nhật  lại thời gian
+    updateTime();
+    /*Yeeu cau he thong*/
+
+
+
+</script>

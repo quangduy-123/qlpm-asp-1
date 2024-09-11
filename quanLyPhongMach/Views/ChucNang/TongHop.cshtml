@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "Tổng Hợp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Assets/CSS/ChucNang.css" rel="stylesheet" />
+}
+
+<style>
+    .kxoskxso {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input#SearchString {
+        height: 33px;
+        width: 311px;
+        margin-top: 10px;
+        padding: 0 20px;
+    }
+</style>
+
+<div class="container">
+    <div class="th">
+        <div class="th-1">
+            <div class="kxoskxso">
+                <div class="tool-bar-1">
+                    <button class="btn_class" id="btn-2xx">Tạo Mới</button>
+                    <button class="btn_class" id="btn-3xx"><a href="/chuc-nang-kham-benh">Vào Khám</a></button>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group form-inliness">
+                        @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Nhập từ khóa  tìm kiếm" })
+
+                        <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+                    </div>
+
+                }
+
+            </div>
+            <div class="th-1-1">
+                <h4>Danh sách phiếu hẹn trong ngày</h4>
+                <div class="tb">
+                    <table id="xmxkxk222" style="margin-top:10px" class="table">
+                        <tr>
+                            <th style="width:30px">STT</th>
+                            <th><p>Tên Bệnh Nhân</p></th>
+                            <th><p>Tên Bác Sĩ</p></th>
+                            <th><p>Ngày Hẹn</p></th>
+                            <th><p>Nội Dung</p></th>
+                            <th>Ghi Chú</th>
+                        </tr>
+                        @{ 
+                            var stt = 1;
+                        }
+                        @foreach (quanLyPhongMach.Models.PhieuHen ph in ViewBag.ph)
+                        {
+                            <tr>
+                                <td>@stt</td>
+                                @foreach (quanLyPhongMach.Models.HoSoBN bn in ViewBag.bn)
+                                {
+                                    if (ph.MaHS == bn.MaHS)
+                                    {
+                                        <td>@Html.DisplayFor(modelItem => bn.HoTen)</td>
+                                    }
+                                }
+                                <td>
+                                    @foreach (quanLyPhongMach.Models.NhanVien nv in ViewBag.nv)
+                                    {
+                                        if (ph.MaNV == nv.MaNV)
+                                        {
+                                        <td>@Html.DisplayFor(modelItem => nv.TenNV)</td>
+                                    }
+                                }
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => ph.NgayHen)</td>
+                                    <td>@Html.DisplayFor(modelItem => ph.NDHen)</td>
+                                    <td>@Html.DisplayFor(modelItem => ph.GhiChu)</td>
+                                </tr>
+                            stt++;
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="th-1-1">
+                <h4>Danh sách Chờ Khám hôm nay</h4>
+                <div class="tb">
+                    <table id="xmxkxk222" style="margin-top:10px" class="table">
+                        <tr>
+                            <th style="width:30px"></th>
+                            <th><p>Tên Bệnh Nhân</p></th>
+                            <th><p>Tên Bác Sĩ</p></th>
+                            <th><p>Điều Trị </p></th>
+                            <th><p>Ghi Chú</p></th>
+                            @* <th><p>Ghi Chú</p></th>*@
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('#xmxkxk222 tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                    var tdText = $(this).find('td:eq(2)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+
+
+</script>

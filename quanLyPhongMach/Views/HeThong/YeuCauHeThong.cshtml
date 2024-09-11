@@ -1,0 +1,145 @@
+﻿@model quanLyPhongMach.Models.YeuCauHT
+
+@{
+    ViewBag.Title = "Yêu Cầu Với Hệ Thống";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    .ycht_content {
+        width: auto;
+        height: auto;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #333;
+    }
+
+    .ycht_form {
+        width: 620px;
+        height: auto;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        background-color: #ffffff;
+        border-radius: 8px;
+        border: 1px solid #000;
+    }
+
+    .ycht_body_box {
+        margin: 10px;
+        width: auto;
+        height: auto;
+    }
+
+    #close_infor1 {
+        background: none;
+    }
+
+        #close_infor1:hover {
+            cursor: pointer;
+        }
+
+    #mteamview {
+        margin-bottom: 10px;
+        text-align: center;
+        -webkit-animation-name: slideIn112;
+        -webkit-animation-duration: 1.4s;
+        animation-name: slideIn112;
+        animation-duration: 0.4s;
+    }
+
+        #mteamview > * {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+            #mteamview > *:last-child {
+                margin-right: 0;
+            }
+
+    .t_022 {
+        display: flex;
+        gap: 10px;
+    }
+</style>
+
+<div class="container">
+    <div class="ycht_box">
+        <div class="ycht_form">
+            <div class="ycht_content">
+                <p style="font-size: 20px; color: white;">Bảng Yêu cầu hỗ trợ</p>
+                <button id="close_infor1" style="border: none; cursor: pointer; background: none; color: white"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="ycht_body">
+                <div class="ycht_body_1" style="text-align: center;">
+                    <h1 style="color:blue; font-size:20px; margin-top:10px;">WebSite QL Phòng Mạch</h1>
+                </div>
+                <div class="ycht_body_box" style="text-align:center;">
+                    <p>Chúng tôi rất tiếc vì lỗi xảy ra không mong muốn.</p>
+                    <p>Nhấn nút Gửi yêu cầu để gửi yêu cầu hỗ trợ.</p>
+                    <p>Chúng tôi sẽ liên hệ trực tiếp khi nhận được yêu cầu.</p>
+                    <p>Chân thành cảm ơn.</p>
+                </div>
+                <div class="footer_body">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(model => model.YeuCau, new { placeholder = "Nhập yêu cầu muốn gửi ở đây...", @class = "form-control", style = "height:50px;padding-left:15px;padding-right:15px;width:587px;max-width:100%;margin-bottom:15px;" })
+                            @Html.ValidationMessageFor(model => model.YeuCau, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="btn_12233" style="text-align:center;margin-block:15px;">
+                        <button type="submit" id="btn_guiyeucau" class="btn_class">Gửi Yêu Cầu</button>
+                        <button id="btn_moteamview" class="btn_class">Mở TeamView</button>
+                    </div>
+                    <div class="mecks" style="display:flex;justify-content:flex-end;padding-right:10px;padding-bottom:5px;">
+                        <p style="color:deepskyblue;">medic.trolyso.vn</p>
+                    </div>
+                    <div id="mteamview">
+                        <div class="t_022">
+                            <p>ID :</p>
+                            <input type="text" id="teamview_id" placeholder="(Đỏ)" style="width:200px;height:33px;" />
+                        </div>
+                        <div class="t_022">
+                            <p>Pass :</p>
+                            <input type="text" id="teamview_pass" placeholder="(Xanh)" style="width: 200px; height: 33px;" />
+                        </div>
+                        <button id="btn_guiteam" class="btn_class">Gửi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("btn_guiyeucau").addEventListener("click", function () {
+        alert("Đã gửi yêu cầu thành công!");
+    });
+
+    document.getElementById("btn_guiteam").addEventListener("click", function () {
+        var id = document.getElementById("teamview_id").value;
+        var pass = document.getElementById("teamview_pass").value;
+        if (id === "" || pass === "") {
+            alert("Chưa nhập ID và PASS, xin vui lòng nhập lại.");
+        } else {
+            alert("Đã gửi ID và PASS thành công!");
+        }
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var btn_teamview = document.getElementById("mteamview");
+        var btn_teamviews = document.getElementById("btn_moteamview");
+        var closeButton = document.getElementById("close_infor1");
+
+        btn_teamview.style.display = "none";
+
+        btn_teamviews.addEventListener("click", function () {
+            btn_teamview.style.display = btn_teamview.style.display === "none" ? "block" : "none";
+        });
+
+        closeButton.addEventListener("click", function () {
+            btn_teamview.style.display = "none";
+        });
+    });
+</script>

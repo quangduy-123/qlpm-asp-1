@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Đăng Nhập - Quản Lý Phòng Mạch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/login.css")
+}
+
+<div>
+    <img class="wave" src="~/Assets/IMGS/wave.png" />
+    <div class="containers">
+        <div class="img">
+            
+        </div>
+        <div class="login-content">
+            <form action="#" method="post">
+                <img src="~/Assets/IMGS/avatar.svg">
+                <h2 class="title">Đăng Nhập</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Tài Khoản</h5>
+                        <input type="text" name="user" class="input" required>
+                    </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        <h5>Mật khẩu</h5>
+                        <input type="password" name="password" class="input" required>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <p class="text-danger" style="color:red;margin:20px;">
+                        @TempData["error"]
+                    </p>
+                </div>
+                <input type="submit" class="btn" value="Đăng Nhập">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/Assets/JS/main.js"></script>

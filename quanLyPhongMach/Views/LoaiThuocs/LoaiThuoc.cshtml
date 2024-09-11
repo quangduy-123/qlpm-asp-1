@@ -1,0 +1,58 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.LoaiThuoc>
+
+@{
+    ViewBag.Title = "Loại Thuốc - Danh Mục";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+
+
+<div class="container">
+    <button class="btn_class btn-s" id="btn-xk">
+        @Html.ActionLink("Thêm Mới", "ThemMoiLoaiThuoc")
+    </button>
+    </p>
+    <table class="table">
+        <tr>
+            <th>STT</th>
+            <th>
+                <p>Tên Loại Thuốc</p>
+            </th>
+            <th>
+                <p>Ghi Chú</p>
+            </th>
+            <th></th>
+        </tr>
+        @{
+            var stt = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GhiChu)
+                </td>
+                <td>
+                    <button class="btn_class btn-jj22">
+                        @Html.ActionLink("Sửa", "SuaLoaiThuoc", new { id = item.IDLoai })
+                    </button> |
+                    <button class="btn_class btn-jj22">
+                        @Html.ActionLink("Xóa", "XoaLoaiThuoc", new { id = item.IDLoai })
+                    </button>
+
+                </td>
+            </tr>
+            stt++;
+        }
+
+    </table>
+
+</div>

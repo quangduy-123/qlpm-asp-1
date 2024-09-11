@@ -1,0 +1,175 @@
+﻿
+
+@{
+    ViewBag.Title = "Bán Thuốc - Chức Năng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Assets/CSS/ChucNang.css" rel="stylesheet" />
+}
+
+<style>
+    input[type="date"] {
+        height: 33px;
+        padding: 5px;
+    }
+
+    input#SearchString1 {
+        height: 33px;
+        width: 300px;
+        margin-top: 10px;
+    }
+
+    .2xs {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+</style>
+
+<div class="container">
+    <div class="kdk2x22">
+        <div class="dsbn-dakham">
+            <h4 style="margin-bottom:10px;">Danh sách bệnh nhân đã khám</h4>
+            <div class="tool-bar-ds-bn">
+                <div class="kdks">
+                    <p>Từ</p>
+                    <input type="date" />
+                </div>
+                <div class="kdks">
+                    <p>Đến</p>
+                    <input type="date" />
+                </div>
+                <button class="btn_class" id="2k2ksxx">TM</button>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                <div class="form-group form-inliness">
+                    @Html.TextBox("SearchString1", "", new { @class = "form-control" })
+                    <input type="submit" id="text-thuocxx" class="btn_class btn-defaultsxs" value="Tìm Kiếm" />
+                </div>
+
+            }
+
+            <table id="xmxkxk" class="table">
+                <tr>
+                    <th style="width:30px">STT</th>
+                    <th><p>Tên Bệnh Nhân</p></th>
+                    <th><p>Lần Khám</p></th>
+                    <th><p>Ngày Khám</p></th>
+
+                </tr>
+                @{ 
+                    var stt = 1;
+                }
+                @foreach (quanLyPhongMach.Models.PhieuKham pk in ViewBag.pk)
+                {
+
+                    <tr>
+                        <td>@stt</td>
+                        <td>@Html.DisplayFor(modelItem => pk.MaHS)</td>
+                        <td>@Html.DisplayFor(modelItem => pk.LanKham)</td>
+                        <td>@Html.DisplayFor(modelItem => pk.NgayKham)</td>
+                    </tr>
+                    stt++;
+                }
+
+            </table>
+
+
+        </div>
+        <div class="don-thuoc-2s">
+            <h4 style="margin-bottom:10px;">Đơn Thuốc</h4>
+            <div class="tool-bar-don-thuoc">
+                <div class="btn_22s">
+                    <button class="btn_class">Xuất Bán</button>
+                    <button class="btn_class">Xóa Hết</button>
+                </div>
+                <div class="btn_22s">
+                    @foreach (quanLyPhongMach.Models.ChungTuNhapXuat t in ViewBag.pkk)
+                    {
+                        <div class="2xs">
+                            <p>Số Chứng Từ :</p>
+                            <input type="text" class="ss22s" value="@t.SoChungTu" />
+                        </div>
+                        <button class="btn_class" id="bnsk2">Tạo Mới</button>
+                        <div class="2xs">
+                            <p>Ngày Nhập :</p>
+                            <input type="date" class="ss22s" value="@t.NgayCT" />
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="tktktk2">
+                <table id="xmxkxk12" style="width:100%" class="table">
+                    <tr>
+                        <th></th>
+                        <th><p>Tên Thuốc</p></th>
+                        <th><p>Số Lượng</p></th>
+                        <th><p>Số Sô</p></th>
+                        <th><p>Đơn Vị</p></th>
+                        <th><p>Đơn Giá (VNĐ)</p></th>
+                        <th><p>Số Lô</p></th>
+                        <th><p>Thành Tiền (VNĐ)</p></th>
+
+
+
+
+
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString1').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('#xmxkxk tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                    var tdText = $(this).find('td:eq(1)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+
+    var btn2 = document.getElementById('bnsk2');
+
+
+    btn2.addEventListener('click', function () {
+
+        location.reload();
+    });
+
+
+    var btn = document.getElementById('2k2ksxx');
+
+
+    btn.addEventListener('click', function () {
+
+        location.reload();
+    });
+</script>

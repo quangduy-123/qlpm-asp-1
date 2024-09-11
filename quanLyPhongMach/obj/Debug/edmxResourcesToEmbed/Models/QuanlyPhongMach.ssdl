@@ -1,0 +1,1018 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="mrtademoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CacDichVuKham">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDV" Type="nvarchar" MaxLength="150" />
+    <Property Name="ChiPhi" Type="money" />
+    <Property Name="Chon" Type="bit" />
+  </EntityType>
+  <EntityType Name="ChiNhanh">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="TenChiNhanh" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.ChungTuNhapXuat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ChungTuNhapXuat">
+    <Key>
+      <PropertyRef Name="IDChungTu" />
+      <PropertyRef Name="SoChungTu" />
+    </Key>
+    <Property Name="IDChungTu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SoChungTu" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="NgayCT" Type="datetime" />
+    <Property Name="SoHoaDon" Type="nvarchar" MaxLength="15" />
+    <Property Name="CTNhap" Type="bit" />
+    <Property Name="MaNV" Type="smallint" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="ChungTuNhapXuat2">
+    <Key>
+      <PropertyRef Name="SoChungTu" />
+    </Key>
+    <Property Name="IDChungTu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SoChungTu" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="NgayCT" Type="datetime" />
+    <Property Name="SoHoaDon" Type="nvarchar" MaxLength="15" />
+    <Property Name="CTNhap" Type="bit" />
+    <Property Name="MaNV" Type="smallint" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.ChungTuXuatBan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ChungTuXuatBan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+    <Property Name="LanKham" Type="smallint" />
+    <Property Name="SoChungTu" Type="nvarchar" MaxLength="12" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.DMKhoThuoc' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DMKhoThuoc">
+    <Key>
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="SoLoThuoc" Type="nchar" MaxLength="20" />
+    <Property Name="SoLuongTon" Type="int" />
+    <Property Name="IDDonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="GiaBan" Type="money" />
+    <Property Name="NgayHetHan" Type="smalldatetime" />
+    <Property Name="NhaCungCap" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.DMKhoThuoc2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DMKhoThuoc2">
+    <Key>
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="SoLoThuoc" Type="nchar" MaxLength="20" />
+    <Property Name="SoLuongTon" Type="int" />
+    <Property Name="IDDonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="GiaBan" Type="money" />
+    <Property Name="NgayHetHan" Type="smalldatetime" />
+    <Property Name="NhaCungCap" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.DMThuocDonGia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DMThuocDonGia">
+    <Key>
+      <PropertyRef Name="IdGia" />
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="IdGia" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="SoLoThuoc" Type="nchar" MaxLength="20" />
+    <Property Name="SoLuongNhap" Type="int" />
+    <Property Name="SoLuongTon" Type="int" />
+    <Property Name="IDDonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="GiaNhap" Type="money" />
+    <Property Name="Vat" Type="smallint" />
+    <Property Name="GiaBan" Type="money" />
+    <Property Name="NgayNhap" Type="smalldatetime" />
+    <Property Name="NgayHetHan" Type="smalldatetime" />
+    <Property Name="NhaCungCap" Type="int" />
+    <Property Name="SoChungTu" Type="nvarchar" MaxLength="12" />
+    <Property Name="TonDau" Type="int" />
+  </EntityType>
+  <EntityType Name="DMThuocDonGia2">
+    <Key>
+      <PropertyRef Name="IdGia" />
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="IdGia" Type="numeric" Precision="18" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="SoLoThuoc" Type="nchar" MaxLength="20" />
+    <Property Name="SoLuongNhap" Type="int" />
+    <Property Name="SoLuongTon" Type="int" />
+    <Property Name="IDDonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="GiaNhap" Type="money" />
+    <Property Name="Vat" Type="smallint" />
+    <Property Name="GiaBan" Type="money" />
+    <Property Name="NgayNhap" Type="smalldatetime" />
+    <Property Name="NgayHetHan" Type="smalldatetime" />
+    <Property Name="NhaCungCap" Type="int" />
+    <Property Name="SoChungTu" Type="nvarchar" MaxLength="12" />
+    <Property Name="TonDau" Type="int" />
+  </EntityType>
+  <EntityType Name="DonThuoc">
+    <Key>
+      <PropertyRef Name="IDDonThuoc" />
+    </Key>
+    <Property Name="IDDonThuoc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaChiTiet" Type="int" Nullable="false" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+    <Property Name="LanKham" Type="smallint" Nullable="false" />
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="SoLuong" Type="smallint" />
+    <Property Name="DonGia" Type="money" />
+    <Property Name="SoLo" Type="nchar" MaxLength="20" />
+    <Property Name="ChiPhi" Type="money" />
+    <Property Name="DonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sang" Type="nvarchar" MaxLength="10" />
+    <Property Name="Trua" Type="nvarchar" MaxLength="10" />
+    <Property Name="Chieu" Type="nvarchar" MaxLength="10" />
+    <Property Name="Toi" Type="nvarchar" MaxLength="10" />
+    <Property Name="GhiChu" Type="ntext" />
+  </EntityType>
+  <EntityType Name="DonThuocMau">
+    <Key>
+      <PropertyRef Name="IdDonThuoc" />
+    </Key>
+    <Property Name="IdDonThuoc" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TenDonThuoc" Type="nvarchar" MaxLength="512" />
+  </EntityType>
+  <EntityType Name="DonThuocMauChiTiet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idDonThuoc" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="DonGia" Type="money" />
+    <Property Name="ChiPhi" Type="money" />
+    <Property Name="DonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sang" Type="nvarchar" MaxLength="10" />
+    <Property Name="Trua" Type="nvarchar" MaxLength="10" />
+    <Property Name="Chieu" Type="nvarchar" MaxLength="10" />
+    <Property Name="Toi" Type="nvarchar" MaxLength="10" />
+    <Property Name="GhiChu" Type="ntext" />
+  </EntityType>
+  <EntityType Name="DonViSuDung">
+    <Key>
+      <PropertyRef Name="IDDonVi" />
+    </Key>
+    <Property Name="IDDonVi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="TenPM" Type="nvarchar" MaxLength="50" />
+    <Property Name="DiaChiPM" Type="nvarchar" MaxLength="200" />
+    <Property Name="DienThoaiPM" Type="nvarchar" MaxLength="200" />
+    <Property Name="FaxPM" Type="nvarchar" MaxLength="10" />
+    <Property Name="EmailPM" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaSoThuePM" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="DonViTinh">
+    <Key>
+      <PropertyRef Name="IDDonVi" />
+    </Key>
+    <Property Name="RowID" Type="int" Nullable="false" />
+    <Property Name="IDDonVi" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DonViThuoc" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.DSThuoc' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="DSThuoc">
+    <Key>
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenThuoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="HoatChat" Type="nvarchar" MaxLength="50" />
+    <Property Name="LoaiThuoc" Type="int" />
+    <Property Name="DonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoLuongTon" Type="smallint" />
+    <Property Name="MaHangSanXuat" Type="nvarchar" MaxLength="10" />
+    <Property Name="MaQuocGia" Type="nvarchar" MaxLength="10" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="DSThuoc2">
+    <Key>
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenThuoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="HoatChat" Type="nvarchar" MaxLength="50" />
+    <Property Name="LoaiThuoc" Type="int" />
+    <Property Name="DonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="SoLuongTon" Type="smallint" />
+    <Property Name="MaHangSanXuat" Type="nvarchar" MaxLength="10" />
+    <Property Name="MaQuocGia" Type="nvarchar" MaxLength="10" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="IDHoaDon" />
+    </Key>
+    <Property Name="IDHoaDon" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaChiTietPK" Type="int" Nullable="false" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+    <Property Name="LanKham" Type="smallint" />
+    <Property Name="NgayHD" Type="smalldatetime" />
+    <Property Name="MaNV" Type="smallint" />
+    <Property Name="ChiPhiKham" Type="money" />
+    <Property Name="ChiPhiThuoc" Type="money" />
+    <Property Name="GhiChu" Type="ntext" />
+    <Property Name="DaThanhToan" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.HoaDonBanThuoc' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="HoaDonBanThuoc">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" />
+    <Property Name="SoLuong" Type="smallint" />
+    <Property Name="DonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="GiaBan" Type="money" />
+    <Property Name="ChiPhi" Type="money" />
+    <Property Name="SoLo" Type="nchar" MaxLength="20" />
+    <Property Name="DaThanhToan" Type="bit" />
+    <Property Name="MaNV" Type="smallint" />
+    <Property Name="NgayBan" Type="smalldatetime" />
+    <Property Name="SoChungTu" Type="nvarchar" MaxLength="12" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="HoSoBN">
+    <Key>
+      <PropertyRef Name="MaHS" />
+    </Key>
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="255" />
+    <Property Name="Phai" Type="nvarchar" MaxLength="3" />
+    <Property Name="NgaySinh" Type="smalldatetime" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="100" />
+    <Property Name="NgheNghiep" Type="nvarchar" MaxLength="50" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="100" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
+    <Property Name="TSBenh" Type="nvarchar" MaxLength="1024" />
+    <Property Name="Hinh" Type="image" />
+    <Property Name="Tuoi" Type="int" />
+    <Property Name="Thang" Type="nvarchar" MaxLength="10" />
+    <Property Name="MaQuanHuyen" Type="int" />
+    <Property Name="TagID" Type="nchar" MaxLength="15" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'mrtademo.dbo.ICD10' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ICD10">
+          <Property Name="ICD" Type="nchar" MaxLength="10" />
+          <Property Name="Nameen" Type="nvarchar" MaxLength="300" />
+          <Property Name="Namevi" Type="nvarchar" MaxLength="300" />
+        </EntityType>-->
+  <EntityType Name="KetQuaCDHAnh">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+    <Property Name="LanKham" Type="smallint" />
+    <Property Name="TenHinhAnh" Type="nvarchar" MaxLength="50" />
+    <Property Name="HinhAnh" Type="image" />
+    <Property Name="KetQua" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'mrtademo.dbo.KhamBenh' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="KhamBenh">
+          <Property Name="Ten" Type="nvarchar" MaxLength="50" />
+          <Property Name="Value" Type="bit" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.LieuDung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LieuDung">
+    <Key>
+      <PropertyRef Name="MaLieuDung" />
+    </Key>
+    <Property Name="MaLieuDung" Type="int" Nullable="false" />
+    <Property Name="TenLieuDung" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="LoaiThuoc">
+    <Key>
+      <PropertyRef Name="IDLoai" />
+    </Key>
+    <Property Name="IDLoai" Type="int" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="40" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LuuVet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaNV" Type="smallint" />
+    <Property Name="TacVu" Type="nvarchar(max)" />
+    <Property Name="ThoiGian" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="NhaCungCap">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNV" Type="nvarchar" MaxLength="80" />
+    <Property Name="Phai" Type="nvarchar" MaxLength="3" />
+    <Property Name="NgaySinh" Type="smalldatetime" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
+    <Property Name="DienThoai" Type="nvarchar" MaxLength="11" />
+    <Property Name="ChuyenMon" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgoaiNgu" Type="nvarchar" MaxLength="20" />
+    <Property Name="MucLuong" Type="money" />
+    <Property Name="ChucVu" Type="nvarchar" MaxLength="50" />
+    <Property Name="TaiKhoan" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="MatKhauTC" Type="nvarchar" MaxLength="30" />
+    <Property Name="GhiChu" Type="ntext" />
+    <Property Name="Hinh" Type="image" />
+    <Property Name="DonVi" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.NhanVienQuyen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="NhanVienQuyen">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="smallint" Nullable="false" />
+    <Property Name="Quyen" Type="ntext" />
+  </EntityType>
+  <EntityType Name="NhapKhoThuoc">
+    <Key>
+      <PropertyRef Name="IDNhap" />
+    </Key>
+    <Property Name="IDNhap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaThuoc" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="SoLo" Type="nchar" MaxLength="20" />
+    <Property Name="NgayNhap" Type="smalldatetime" />
+    <Property Name="SoLuong" Type="smallint" />
+    <Property Name="IDDonVi" Type="nvarchar" MaxLength="50" />
+    <Property Name="NhaCungCap" Type="int" Nullable="false" />
+    <Property Name="KetQua" Type="bit" />
+  </EntityType>
+  <EntityType Name="PhieuHen">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+    <Property Name="MaNV" Type="smallint" Nullable="false" />
+    <Property Name="NgayHen" Type="smalldatetime" Nullable="false" />
+    <Property Name="NDHen" Type="ntext" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PhieuKham">
+    <Key>
+      <PropertyRef Name="MaChiTiet" />
+    </Key>
+    <Property Name="MaChiTiet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="LanKham" Type="smallint" Nullable="false" />
+    <Property Name="NgayKham" Type="smalldatetime" />
+    <Property Name="MaNV" Type="smallint" />
+    <Property Name="NDDieuTri" Type="ntext" />
+    <Property Name="ChiPhiKham" Type="money" />
+    <Property Name="GhiChu" Type="ntext" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="Mach" Type="smallint" />
+    <Property Name="NhietDo" Type="float" />
+    <Property Name="HuyetAp" Type="nvarchar" MaxLength="20" />
+    <Property Name="NhipTho" Type="smallint" />
+    <Property Name="CanNang" Type="float" />
+    <Property Name="ChieuCao" Type="float" />
+    <Property Name="BMI" Type="float" />
+    <Property Name="HuyKham" Type="bit" />
+    <Property Name="CanLamSang" Type="ntext" />
+    <Property Name="TrieuChung" Type="ntext" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.PhieuThu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PhieuThu">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+    <Property Name="NgayKham" Type="smalldatetime" />
+    <Property Name="DaThanhToan" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.PhieuThuChiTiet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="PhieuThuChiTiet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaHS" Type="nvarchar" MaxLength="15" />
+    <Property Name="NgayKham" Type="smalldatetime" />
+    <Property Name="MaNV" Type="smallint" />
+    <Property Name="IDDichVu" Type="int" />
+    <Property Name="DaThanhToan" Type="bit" />
+    <Property Name="LanKham" Type="int" />
+  </EntityType>
+  <EntityType Name="PTDHangNgay">
+    <Key>
+      <PropertyRef Name="MaHS" />
+      <PropertyRef Name="NgayTD" />
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaHS" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NgayTD" Type="smalldatetime" Nullable="false" />
+    <Property Name="MaNV" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="NDdieuTri" Type="nvarchar" MaxLength="80" />
+    <Property Name="ChiPhi" Type="money" />
+    <Property Name="GhiChu" Type="ntext" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.QuanHuyen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="QuanHuyen">
+    <Key>
+      <PropertyRef Name="MaQuanHuyen" />
+    </Key>
+    <Property Name="MaQuanHuyen" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaThanhPho" Type="nvarchar" MaxLength="10" />
+    <Property Name="TenQuanHuyen" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.QuocGia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="QuocGia">
+    <Key>
+      <PropertyRef Name="MaQuocGia" />
+    </Key>
+    <Property Name="MaQuocGia" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenQuocGia" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.tb_CanLamSang' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tb_CanLamSang">
+    <Key>
+      <PropertyRef Name="MaCanLamSang" />
+    </Key>
+    <Property Name="MaCanLamSang" Type="int" Nullable="false" />
+    <Property Name="TenCanLamSang" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.tb_ChanDoan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tb_ChanDoan">
+    <Key>
+      <PropertyRef Name="MaChanDoan" />
+    </Key>
+    <Property Name="MaChanDoan" Type="int" Nullable="false" />
+    <Property Name="TenChanDoan" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.tb_ChiDinh' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tb_ChiDinh">
+    <Key>
+      <PropertyRef Name="MaChiDinh" />
+    </Key>
+    <Property Name="MaChiDinh" Type="int" Nullable="false" />
+    <Property Name="TenChiDinh" Type="nvarchar" MaxLength="100" />
+    <Property Name="DonGia" Type="int" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.tb_HangSanXuat' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tb_HangSanXuat">
+    <Key>
+      <PropertyRef Name="MaHangSanXuat" />
+    </Key>
+    <Property Name="MaHangSanXuat" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenHangSanXuat" Type="nvarchar" MaxLength="50" />
+    <Property Name="GhiChu" Type="ntext" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.tb_NhaCungCap' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tb_NhaCungCap">
+    <Key>
+      <PropertyRef Name="MaNhaCungCap" />
+    </Key>
+    <Property Name="MaNhaCungCap" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenNhaCungCap" Type="nvarchar" MaxLength="100" />
+    <Property Name="DiaChiNhaCungCap" Type="nvarchar" MaxLength="100" />
+    <Property Name="DienThoaiNhaCungCap" Type="nvarchar" MaxLength="50" />
+    <Property Name="FaxNhaCungCap" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaSoThue" Type="nvarchar" MaxLength="50" />
+    <Property Name="NguoiLienHe" Type="nvarchar" MaxLength="50" />
+    <Property Name="GhiChu" Type="ntext" />
+    <Property Name="MaQuanHuyen" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.tb_QuanHuyen' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tb_QuanHuyen">
+    <Key>
+      <PropertyRef Name="MaQuanHuyen" />
+    </Key>
+    <Property Name="MaQuanHuyen" Type="int" Nullable="false" />
+    <Property Name="TenQuanHuyen" Type="nvarchar" MaxLength="100" />
+    <Property Name="MaThanhPho" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.tb_ThanhPho' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tb_ThanhPho">
+    <Key>
+      <PropertyRef Name="MaThanhPho" />
+    </Key>
+    <Property Name="MaThanhPho" Type="int" Nullable="false" />
+    <Property Name="TenThanhPho" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.tb_TrieuChung' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tb_TrieuChung">
+    <Key>
+      <PropertyRef Name="MaTrieuChung" />
+    </Key>
+    <Property Name="MaTrieuChung" Type="int" Nullable="false" />
+    <Property Name="TenTrieuChung" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="TreeChucNang">
+    <Key>
+      <PropertyRef Name="ParentID" />
+    </Key>
+    <Property Name="ParentID" Type="int" Nullable="false" />
+    <Property Name="ChucNang" Type="nvarchar" MaxLength="50" />
+    <Property Name="Xem" Type="bit" />
+    <Property Name="Them" Type="bit" />
+    <Property Name="Xoa" Type="bit" />
+    <Property Name="Sua" Type="bit" />
+    <Property Name="In" Type="bit" />
+    <Property Name="MaNV" Type="smallint" />
+  </EntityType>
+  <EntityType Name="UserAdmin">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="int" Nullable="false" />
+    <Property Name="Admin" Type="bit" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mrtademo.dbo.YeuCauHT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="YeuCauHT">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaNV" Type="int" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="50" />
+    <Property Name="YeuCau" Type="ntext" />
+    <Property Name="TeamView" Type="ntext" />
+    <Property Name="ThoiGian" Type="datetime" />
+    <Property Name="DaHT" Type="bit" />
+  </EntityType>
+  <Association Name="FK_ChiTietHoSo_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="PhieuKham" Type="Self.PhieuKham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PhieuKham">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonThuoc_DonViThuoc">
+    <End Role="DonViTinh" Type="Self.DonViTinh" Multiplicity="0..1" />
+    <End Role="DonThuoc" Type="Self.DonThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonViTinh">
+        <PropertyRef Name="IDDonVi" />
+      </Principal>
+      <Dependent Role="DonThuoc">
+        <PropertyRef Name="DonVi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonThuoc_PhieuKham">
+    <End Role="PhieuKham" Type="Self.PhieuKham" Multiplicity="1" />
+    <End Role="DonThuoc" Type="Self.DonThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuKham">
+        <PropertyRef Name="MaChiTiet" />
+      </Principal>
+      <Dependent Role="DonThuoc">
+        <PropertyRef Name="MaChiTiet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonThuocMauChiTiet_DonThuocMau">
+    <End Role="DonThuocMau" Type="Self.DonThuocMau" Multiplicity="1" />
+    <End Role="DonThuocMauChiTiet" Type="Self.DonThuocMauChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonThuocMau">
+        <PropertyRef Name="IdDonThuoc" />
+      </Principal>
+      <Dependent Role="DonThuocMauChiTiet">
+        <PropertyRef Name="idDonThuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DonThuocMauChiTiet_DonViThuoc">
+    <End Role="DonViTinh" Type="Self.DonViTinh" Multiplicity="0..1" />
+    <End Role="DonThuocMauChiTiet" Type="Self.DonThuocMauChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonViTinh">
+        <PropertyRef Name="IDDonVi" />
+      </Principal>
+      <Dependent Role="DonThuocMauChiTiet">
+        <PropertyRef Name="DonVi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDon_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDon_PhieuKham">
+    <End Role="PhieuKham" Type="Self.PhieuKham" Multiplicity="1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuKham">
+        <PropertyRef Name="MaChiTiet" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="MaChiTietPK" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NhanVien_DonViSuDung">
+    <End Role="DonViSuDung" Type="Self.DonViSuDung" Multiplicity="0..1" />
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DonViSuDung">
+        <PropertyRef Name="IDDonVi" />
+      </Principal>
+      <Dependent Role="NhanVien">
+        <PropertyRef Name="DonVi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NhanVienQuyen_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+    <End Role="NhanVienQuyen" Type="Self.NhanVienQuyen" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="NhanVienQuyen">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NhapKhoThuoc_NhaCungCap">
+    <End Role="NhaCungCap" Type="Self.NhaCungCap" Multiplicity="1" />
+    <End Role="NhapKhoThuoc" Type="Self.NhapKhoThuoc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaCungCap">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="NhapKhoThuoc">
+        <PropertyRef Name="NhaCungCap" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuHen_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+    <End Role="PhieuHen" Type="Self.PhieuHen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PhieuHen">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuThuChiTiet_CacDichVuKham">
+    <End Role="CacDichVuKham" Type="Self.CacDichVuKham" Multiplicity="0..1" />
+    <End Role="PhieuThuChiTiet" Type="Self.PhieuThuChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CacDichVuKham">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PhieuThuChiTiet">
+        <PropertyRef Name="IDDichVu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PhieuThuChiTiet_NhanVien">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="0..1" />
+    <End Role="PhieuThuChiTiet" Type="Self.PhieuThuChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="PhieuThuChiTiet">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="mrtademoModelStoreContainer">
+    <EntitySet Name="CacDichVuKham" EntityType="Self.CacDichVuKham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChiNhanh" EntityType="Self.ChiNhanh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChungTuNhapXuat2" EntityType="Self.ChungTuNhapXuat2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DMThuocDonGia2" EntityType="Self.DMThuocDonGia2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonThuoc" EntityType="Self.DonThuoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonThuocMau" EntityType="Self.DonThuocMau" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonThuocMauChiTiet" EntityType="Self.DonThuocMauChiTiet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonViSuDung" EntityType="Self.DonViSuDung" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DonViTinh" EntityType="Self.DonViTinh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DSThuoc2" EntityType="Self.DSThuoc2" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoSoBN" EntityType="Self.HoSoBN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KetQuaCDHAnh" EntityType="Self.KetQuaCDHAnh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiThuoc" EntityType="Self.LoaiThuoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LuuVet" EntityType="Self.LuuVet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhaCungCap" EntityType="Self.NhaCungCap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhanVien" EntityType="Self.NhanVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NhapKhoThuoc" EntityType="Self.NhapKhoThuoc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuHen" EntityType="Self.PhieuHen" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhieuKham" EntityType="Self.PhieuKham" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PTDHangNgay" EntityType="Self.PTDHangNgay" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TreeChucNang" EntityType="Self.TreeChucNang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAdmin" EntityType="Self.UserAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChungTuNhapXuat" EntityType="Self.ChungTuNhapXuat" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ChungTuNhapXuat].[IDChungTu] AS [IDChungTu], 
+    [ChungTuNhapXuat].[SoChungTu] AS [SoChungTu], 
+    [ChungTuNhapXuat].[NgayCT] AS [NgayCT], 
+    [ChungTuNhapXuat].[SoHoaDon] AS [SoHoaDon], 
+    [ChungTuNhapXuat].[CTNhap] AS [CTNhap], 
+    [ChungTuNhapXuat].[MaNV] AS [MaNV], 
+    [ChungTuNhapXuat].[MaHS] AS [MaHS]
+    FROM [dbo].[ChungTuNhapXuat] AS [ChungTuNhapXuat]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ChungTuXuatBan" EntityType="Self.ChungTuXuatBan" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ChungTuXuatBan].[ID] AS [ID], 
+    [ChungTuXuatBan].[MaHS] AS [MaHS], 
+    [ChungTuXuatBan].[LanKham] AS [LanKham], 
+    [ChungTuXuatBan].[SoChungTu] AS [SoChungTu]
+    FROM [dbo].[ChungTuXuatBan] AS [ChungTuXuatBan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DMKhoThuoc" EntityType="Self.DMKhoThuoc" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DMKhoThuoc].[MaThuoc] AS [MaThuoc], 
+    [DMKhoThuoc].[SoLoThuoc] AS [SoLoThuoc], 
+    [DMKhoThuoc].[SoLuongTon] AS [SoLuongTon], 
+    [DMKhoThuoc].[IDDonVi] AS [IDDonVi], 
+    [DMKhoThuoc].[GiaBan] AS [GiaBan], 
+    [DMKhoThuoc].[NgayHetHan] AS [NgayHetHan], 
+    [DMKhoThuoc].[NhaCungCap] AS [NhaCungCap]
+    FROM [dbo].[DMKhoThuoc] AS [DMKhoThuoc]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DMKhoThuoc2" EntityType="Self.DMKhoThuoc2" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DMKhoThuoc2].[MaThuoc] AS [MaThuoc], 
+    [DMKhoThuoc2].[SoLoThuoc] AS [SoLoThuoc], 
+    [DMKhoThuoc2].[SoLuongTon] AS [SoLuongTon], 
+    [DMKhoThuoc2].[IDDonVi] AS [IDDonVi], 
+    [DMKhoThuoc2].[GiaBan] AS [GiaBan], 
+    [DMKhoThuoc2].[NgayHetHan] AS [NgayHetHan], 
+    [DMKhoThuoc2].[NhaCungCap] AS [NhaCungCap]
+    FROM [dbo].[DMKhoThuoc2] AS [DMKhoThuoc2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DMThuocDonGia" EntityType="Self.DMThuocDonGia" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DMThuocDonGia].[IdGia] AS [IdGia], 
+    [DMThuocDonGia].[MaThuoc] AS [MaThuoc], 
+    [DMThuocDonGia].[SoLoThuoc] AS [SoLoThuoc], 
+    [DMThuocDonGia].[SoLuongNhap] AS [SoLuongNhap], 
+    [DMThuocDonGia].[SoLuongTon] AS [SoLuongTon], 
+    [DMThuocDonGia].[IDDonVi] AS [IDDonVi], 
+    [DMThuocDonGia].[GiaNhap] AS [GiaNhap], 
+    [DMThuocDonGia].[Vat] AS [Vat], 
+    [DMThuocDonGia].[GiaBan] AS [GiaBan], 
+    [DMThuocDonGia].[NgayNhap] AS [NgayNhap], 
+    [DMThuocDonGia].[NgayHetHan] AS [NgayHetHan], 
+    [DMThuocDonGia].[NhaCungCap] AS [NhaCungCap], 
+    [DMThuocDonGia].[SoChungTu] AS [SoChungTu], 
+    [DMThuocDonGia].[TonDau] AS [TonDau]
+    FROM [dbo].[DMThuocDonGia] AS [DMThuocDonGia]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="DSThuoc" EntityType="Self.DSThuoc" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [DSThuoc].[MaThuoc] AS [MaThuoc], 
+    [DSThuoc].[TenThuoc] AS [TenThuoc], 
+    [DSThuoc].[HoatChat] AS [HoatChat], 
+    [DSThuoc].[LoaiThuoc] AS [LoaiThuoc], 
+    [DSThuoc].[DonVi] AS [DonVi], 
+    [DSThuoc].[SoLuongTon] AS [SoLuongTon], 
+    [DSThuoc].[MaHangSanXuat] AS [MaHangSanXuat], 
+    [DSThuoc].[MaQuocGia] AS [MaQuocGia], 
+    [DSThuoc].[GhiChu] AS [GhiChu]
+    FROM [dbo].[DSThuoc] AS [DSThuoc]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="HoaDonBanThuoc" EntityType="Self.HoaDonBanThuoc" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [HoaDonBanThuoc].[ID] AS [ID], 
+    [HoaDonBanThuoc].[MaThuoc] AS [MaThuoc], 
+    [HoaDonBanThuoc].[SoLuong] AS [SoLuong], 
+    [HoaDonBanThuoc].[DonVi] AS [DonVi], 
+    [HoaDonBanThuoc].[GiaBan] AS [GiaBan], 
+    [HoaDonBanThuoc].[ChiPhi] AS [ChiPhi], 
+    [HoaDonBanThuoc].[SoLo] AS [SoLo], 
+    [HoaDonBanThuoc].[DaThanhToan] AS [DaThanhToan], 
+    [HoaDonBanThuoc].[MaNV] AS [MaNV], 
+    [HoaDonBanThuoc].[NgayBan] AS [NgayBan], 
+    [HoaDonBanThuoc].[SoChungTu] AS [SoChungTu], 
+    [HoaDonBanThuoc].[MaHS] AS [MaHS]
+    FROM [dbo].[HoaDonBanThuoc] AS [HoaDonBanThuoc]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="LieuDung" EntityType="Self.LieuDung" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LieuDung].[MaLieuDung] AS [MaLieuDung], 
+    [LieuDung].[TenLieuDung] AS [TenLieuDung]
+    FROM [dbo].[LieuDung] AS [LieuDung]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="NhanVienQuyen" EntityType="Self.NhanVienQuyen" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [NhanVienQuyen].[MaNV] AS [MaNV], 
+    [NhanVienQuyen].[Quyen] AS [Quyen]
+    FROM [dbo].[NhanVienQuyen] AS [NhanVienQuyen]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PhieuThu" EntityType="Self.PhieuThu" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PhieuThu].[ID] AS [ID], 
+    [PhieuThu].[MaHS] AS [MaHS], 
+    [PhieuThu].[NgayKham] AS [NgayKham], 
+    [PhieuThu].[DaThanhToan] AS [DaThanhToan]
+    FROM [dbo].[PhieuThu] AS [PhieuThu]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="PhieuThuChiTiet" EntityType="Self.PhieuThuChiTiet" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [PhieuThuChiTiet].[ID] AS [ID], 
+    [PhieuThuChiTiet].[MaHS] AS [MaHS], 
+    [PhieuThuChiTiet].[NgayKham] AS [NgayKham], 
+    [PhieuThuChiTiet].[MaNV] AS [MaNV], 
+    [PhieuThuChiTiet].[IDDichVu] AS [IDDichVu], 
+    [PhieuThuChiTiet].[DaThanhToan] AS [DaThanhToan], 
+    [PhieuThuChiTiet].[LanKham] AS [LanKham]
+    FROM [dbo].[PhieuThuChiTiet] AS [PhieuThuChiTiet]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="QuanHuyen" EntityType="Self.QuanHuyen" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [QuanHuyen].[MaQuanHuyen] AS [MaQuanHuyen], 
+    [QuanHuyen].[MaThanhPho] AS [MaThanhPho], 
+    [QuanHuyen].[TenQuanHuyen] AS [TenQuanHuyen]
+    FROM [dbo].[QuanHuyen] AS [QuanHuyen]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="QuocGia" EntityType="Self.QuocGia" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [QuocGia].[MaQuocGia] AS [MaQuocGia], 
+    [QuocGia].[TenQuocGia] AS [TenQuocGia]
+    FROM [dbo].[QuocGia] AS [QuocGia]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tb_CanLamSang" EntityType="Self.tb_CanLamSang" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tb_CanLamSang].[MaCanLamSang] AS [MaCanLamSang], 
+    [tb_CanLamSang].[TenCanLamSang] AS [TenCanLamSang]
+    FROM [dbo].[tb_CanLamSang] AS [tb_CanLamSang]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tb_ChanDoan" EntityType="Self.tb_ChanDoan" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tb_ChanDoan].[MaChanDoan] AS [MaChanDoan], 
+    [tb_ChanDoan].[TenChanDoan] AS [TenChanDoan]
+    FROM [dbo].[tb_ChanDoan] AS [tb_ChanDoan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tb_ChiDinh" EntityType="Self.tb_ChiDinh" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tb_ChiDinh].[MaChiDinh] AS [MaChiDinh], 
+    [tb_ChiDinh].[TenChiDinh] AS [TenChiDinh], 
+    [tb_ChiDinh].[DonGia] AS [DonGia], 
+    [tb_ChiDinh].[GhiChu] AS [GhiChu]
+    FROM [dbo].[tb_ChiDinh] AS [tb_ChiDinh]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tb_HangSanXuat" EntityType="Self.tb_HangSanXuat" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tb_HangSanXuat].[MaHangSanXuat] AS [MaHangSanXuat], 
+    [tb_HangSanXuat].[TenHangSanXuat] AS [TenHangSanXuat], 
+    [tb_HangSanXuat].[GhiChu] AS [GhiChu]
+    FROM [dbo].[tb_HangSanXuat] AS [tb_HangSanXuat]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tb_NhaCungCap" EntityType="Self.tb_NhaCungCap" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tb_NhaCungCap].[MaNhaCungCap] AS [MaNhaCungCap], 
+    [tb_NhaCungCap].[TenNhaCungCap] AS [TenNhaCungCap], 
+    [tb_NhaCungCap].[DiaChiNhaCungCap] AS [DiaChiNhaCungCap], 
+    [tb_NhaCungCap].[DienThoaiNhaCungCap] AS [DienThoaiNhaCungCap], 
+    [tb_NhaCungCap].[FaxNhaCungCap] AS [FaxNhaCungCap], 
+    [tb_NhaCungCap].[MaSoThue] AS [MaSoThue], 
+    [tb_NhaCungCap].[NguoiLienHe] AS [NguoiLienHe], 
+    [tb_NhaCungCap].[GhiChu] AS [GhiChu], 
+    [tb_NhaCungCap].[MaQuanHuyen] AS [MaQuanHuyen]
+    FROM [dbo].[tb_NhaCungCap] AS [tb_NhaCungCap]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tb_QuanHuyen" EntityType="Self.tb_QuanHuyen" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tb_QuanHuyen].[MaQuanHuyen] AS [MaQuanHuyen], 
+    [tb_QuanHuyen].[TenQuanHuyen] AS [TenQuanHuyen], 
+    [tb_QuanHuyen].[MaThanhPho] AS [MaThanhPho]
+    FROM [dbo].[tb_QuanHuyen] AS [tb_QuanHuyen]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tb_ThanhPho" EntityType="Self.tb_ThanhPho" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tb_ThanhPho].[MaThanhPho] AS [MaThanhPho], 
+    [tb_ThanhPho].[TenThanhPho] AS [TenThanhPho]
+    FROM [dbo].[tb_ThanhPho] AS [tb_ThanhPho]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tb_TrieuChung" EntityType="Self.tb_TrieuChung" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tb_TrieuChung].[MaTrieuChung] AS [MaTrieuChung], 
+    [tb_TrieuChung].[TenTrieuChung] AS [TenTrieuChung]
+    FROM [dbo].[tb_TrieuChung] AS [tb_TrieuChung]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="YeuCauHT" EntityType="Self.YeuCauHT" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [YeuCauHT].[ID] AS [ID], 
+    [YeuCauHT].[MaNV] AS [MaNV], 
+    [YeuCauHT].[Ten] AS [Ten], 
+    [YeuCauHT].[YeuCau] AS [YeuCau], 
+    [YeuCauHT].[TeamView] AS [TeamView], 
+    [YeuCauHT].[ThoiGian] AS [ThoiGian], 
+    [YeuCauHT].[DaHT] AS [DaHT]
+    FROM [dbo].[YeuCauHT] AS [YeuCauHT]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ChiTietHoSo_NhanVien" Association="Self.FK_ChiTietHoSo_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="PhieuKham" EntitySet="PhieuKham" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonThuoc_DonViThuoc" Association="Self.FK_DonThuoc_DonViThuoc">
+      <End Role="DonViTinh" EntitySet="DonViTinh" />
+      <End Role="DonThuoc" EntitySet="DonThuoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonThuoc_PhieuKham" Association="Self.FK_DonThuoc_PhieuKham">
+      <End Role="PhieuKham" EntitySet="PhieuKham" />
+      <End Role="DonThuoc" EntitySet="DonThuoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonThuocMauChiTiet_DonThuocMau" Association="Self.FK_DonThuocMauChiTiet_DonThuocMau">
+      <End Role="DonThuocMau" EntitySet="DonThuocMau" />
+      <End Role="DonThuocMauChiTiet" EntitySet="DonThuocMauChiTiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DonThuocMauChiTiet_DonViThuoc" Association="Self.FK_DonThuocMauChiTiet_DonViThuoc">
+      <End Role="DonViTinh" EntitySet="DonViTinh" />
+      <End Role="DonThuocMauChiTiet" EntitySet="DonThuocMauChiTiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDon_NhanVien" Association="Self.FK_HoaDon_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDon_PhieuKham" Association="Self.FK_HoaDon_PhieuKham">
+      <End Role="PhieuKham" EntitySet="PhieuKham" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NhanVien_DonViSuDung" Association="Self.FK_NhanVien_DonViSuDung">
+      <End Role="DonViSuDung" EntitySet="DonViSuDung" />
+      <End Role="NhanVien" EntitySet="NhanVien" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NhanVienQuyen_NhanVien" Association="Self.FK_NhanVienQuyen_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="NhanVienQuyen" EntitySet="NhanVienQuyen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NhapKhoThuoc_NhaCungCap" Association="Self.FK_NhapKhoThuoc_NhaCungCap">
+      <End Role="NhaCungCap" EntitySet="NhaCungCap" />
+      <End Role="NhapKhoThuoc" EntitySet="NhapKhoThuoc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuHen_NhanVien" Association="Self.FK_PhieuHen_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="PhieuHen" EntitySet="PhieuHen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuThuChiTiet_CacDichVuKham" Association="Self.FK_PhieuThuChiTiet_CacDichVuKham">
+      <End Role="CacDichVuKham" EntitySet="CacDichVuKham" />
+      <End Role="PhieuThuChiTiet" EntitySet="PhieuThuChiTiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PhieuThuChiTiet_NhanVien" Association="Self.FK_PhieuThuChiTiet_NhanVien">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="PhieuThuChiTiet" EntitySet="PhieuThuChiTiet" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

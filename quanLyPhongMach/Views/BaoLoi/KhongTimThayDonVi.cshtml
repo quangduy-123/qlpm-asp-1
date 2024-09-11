@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = " Lỗi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    .so {
+        border: 1px solid #333;
+        border-color: black;
+        padding: 20px;
+        width: 600px;
+        margin: 0 auto;
+        color: black;
+    }
+
+    .buttons a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .buttons {
+        text-align: center;
+        margin-top: 15px;
+    }
+</style>
+
+<div class="container">
+    <div class="so">
+        <h2 style="text-align:center">
+           Không Tìm Thấy Đơn Vị
+        </h2>
+        <div class="buttons">
+            <button id="2kx" class="btn_class"><a href="~/Home/Index">Quay Lại</a></button>
+        </div>
+    </div>
+</div>
+

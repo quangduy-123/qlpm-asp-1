@@ -1,0 +1,124 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.NhanVien>
+
+@{
+    ViewBag.Title = "Danh Sách Nhân Viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+
+
+<div class="container">
+    <div class="button-x2">
+        <button id="btn_2" class="btn_class">
+            @Html.ActionLink("Thêm Mới", "Create")
+        </button>
+    </div>
+
+    <table class="table1">
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Tên Nhân Viên
+            </th>
+            <th>
+                Giới Tính
+            </th>
+            <th>
+                Ngày Sinh
+            </th>
+            <th>
+                Địa Chỉ
+            </th>
+            <th>
+                Điện Thoại
+            </th>
+            <th>
+                Chuyên Môn
+            </th>
+            <th>
+                Ngoại Ngữ
+            </th>
+            <th>
+                Chức Vụ
+            </th>
+            <th>
+                Tài Khoản
+            </th>
+            <th>
+                Mật Khẩu
+            </th>
+            <th>
+                Ghi Chú
+            </th>
+            <th>
+                Tên Đơn Vị
+            </th>
+            <th></th>
+        </tr>
+
+        @{
+            var stt = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phai)
+                </td>
+                <td>
+                    @String.Format("{0:dd-MM-yyyy}", item.NgaySinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChuyenMon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgoaiNgu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChucVu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaiKhoan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatKhauTC)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GhiChu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonViSuDung.TenDonVi)
+                </td>
+
+                <td>
+                    <button class="btn_class cs">  @Html.ActionLink("Sửa", "Edit", new { id = item.MaNV }) </button>
+                    <button class="btn_class cs">
+                        @Html.ActionLink("Chi Tiết", "Details", new { id = item.MaNV })
+                    </button>
+                    <button class="btn_class cs">
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaNV })
+                    </button>
+                </td>
+            </tr>
+            stt++;
+        }
+    </table>
+
+
+
+</div>

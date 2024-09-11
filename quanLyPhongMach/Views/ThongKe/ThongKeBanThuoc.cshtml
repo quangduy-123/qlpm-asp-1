@@ -1,0 +1,213 @@
+﻿@model quanLyPhongMach.Models.HoaDonBanThuoc
+
+@{
+    ViewBag.Title = "Thống Kê Bán Thuốc - Thống Kê";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    input#searchQuery {
+        height: 33px;
+        width: 250px;
+    }
+
+    .form-group {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .toolbar-tk-1 {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .tktk {
+        display: flex;
+        gap: 15px;
+    }
+
+    .toolbar-tk {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    .skk12 {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+</style>
+
+<div class="container">
+    <h2>Thống Kê Bán Thuốc</h2>
+    <br />
+    <div class="toolbar-tk">
+        <div class="tktk">
+            <div class="toolbar-tk-1">
+                <p>Từ :</p>
+                <input type="date" style="height:33px" />
+            </div>
+            <div class="toolbar-tk-1">
+                <p>Đến:</p>
+                <input type="date" style="height:33px" />
+            </div>
+            <div class="toolbar-tk-1">
+                <button class="btn_class modal-backdrop -2s" id="xx2xx">
+                    <p>Lấy Dữ Liệu</p>
+                </button>
+                <button class="btn_class modal-backdrop -2s" id="xx22xx">
+                    <p>In</p>
+                </button>
+                <button class="btn_class modal-backdrop -2s" id="xx22xx">
+                    <p>Xem Trước</p>
+                </button>
+            </div>
+        </div>
+        <div class="toolbar-tk-12">
+            @using (Html.BeginForm("ThongKeBanThuoc", "ThongKe", FormMethod.Get))
+            {
+                <div class="form-group">
+                    @Html.Label("Tìm Kiếm Thông Tin Thống Kê Thuốc:")
+                    @Html.TextBox("searchQuery", null, new { @class = "form-control" })
+                    <button type="submit" class="btn btn_class btn-primary">Tìm kiếm</button>
+                </div>
+
+            }
+        </div>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <table id="medicationTable" class="table">
+            <tr>
+                <th>
+                    STT
+                </th>
+                <th>
+                    Mã Thuốc
+                </th>
+                <th>
+                    Số Lượng
+                </th>
+                <th>
+                    Đơn Vị
+                </th>
+                <th>
+                    Giá Bán
+                </th>
+                <th>
+                    Chi Phí
+                </th>
+                <th>
+                    Tổng cộng
+                </th>
+                <th>
+                    Số Lô
+                </th>
+                <th>
+                    Đã Thanh Toán
+                </th>
+                <th>
+                    Mã Nhân Viên
+                </th>
+                <th>
+                    Ngày Bán
+                </th>
+                <th>
+                    Số Chứng Từ
+                </th>
+                <th>
+                    Mã Hồ Sơ
+                </th>
+            </tr>
+            @{
+                var stt = 1;
+                decimal tongCong = 0;
+            }
+            @foreach (quanLyPhongMach.Models.HoaDonBanThuoc item in ViewBag.hd)
+            {
+                <tr>
+                    <td>
+                        @stt
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaThuoc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLuong)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DonVi)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiaBan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChiPhi)
+                    </td>
+                    <td>
+                        @{
+                            var total = (double)(item.ChiPhi + item.GiaBan) * item.SoLuong;
+                            tongCong += (decimal)total;
+                            @total
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoLo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DaThanhToan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaNV)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayBan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoChungTu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaHS)
+                    </td>
+                </tr>
+                stt++;
+            }
+
+        </table>
+
+        <div class="skk12">
+            <p>Tổng Cộng Chi Phí Bán Thuốc :</p>
+            <input type="text" value="@tongCong" readonly />
+        </div>
+    }
+
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("medicationTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1]; // Change index to match the column you want to search (e.g., 1 for medication code)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+

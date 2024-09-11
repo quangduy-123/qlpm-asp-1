@@ -1,0 +1,189 @@
+﻿
+
+@{
+    ViewBag.Title = "Thanh Toán Dịch Vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+
+<style>
+    .ttdv {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction:column;
+        gap: 15px
+    }
+    .ttdv-1-1 {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    input#SearchString {
+        width: 300px;
+        height: 33px;
+        padding:0 10px
+    }
+    .tool-bass {
+        display: flex;
+        gap: 15px;
+    }
+
+    input[type="date"] {
+        height: 33px;
+        padding: 5px;
+    }
+
+
+    .tong-cong {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        padding-top: 12px;
+    }
+
+    .ttxx2-2 {
+        display:flex;
+        justify-content:space-between;
+    }
+</style>
+
+
+<div class="container">
+    <div class="ttdv">
+        <div class="ttdv-1">
+            <div class="ttxx2-2">
+                <div class="tool-bass">
+                    <div class="ttdv-1-1">
+                        <p>Từ</p>
+                        <input type="date" />
+                    </div>
+                    <div class="ttdv-1-1">
+                        <p>Đến</p>
+                        <input type="date" />
+                    </div>
+                    <div class="ttdv-1-1">
+                        <button class="btn_class" id="btn-1-1-1--1">Tạo Mới</button>
+                        <a href="~/ThanhToanDichVu/DanhSachBenhNhanDaKham"><button class="btn_class" id="btn-1-1-1--1">Danh Sách Bệnh Nhân Đã Khám</button></a>
+                    </div>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group form-inliness">
+                        @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Nhập từ khóa tìm kiếm" })
+                        <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="ttdv-2">
+            <h4>Chi Tiết</h4>
+            <table id="xmxkxk1" class="table">
+                <tr>
+                    <th style="width:30px">STT</th>
+                    <th><p>Tên Bệnh Nhân</p></th>
+                    <th><p>Lần Khám</p></th>
+                    <th><p>Ngày Khám</p></th>
+                    <th><p>Nhân Viên</p></th>
+                    <th><p>Nội Dung Điều Trị</p></th>
+                    <th><p>Chi Phí Khám</p></th>
+                    <th><p>Ghi Chú</p></th>
+                    <th><p>Trạng Thái</p></th>
+                </tr>
+                @{
+                var stt=1;}
+                @foreach (quanLyPhongMach.Models.PhieuKham pkk in ViewBag.pk)
+                {
+
+                    <tr>
+                        <td>@stt</td>
+                        <td>@Html.DisplayFor(modelItem => pkk.MaHS)</td>
+                        <td>@Html.DisplayFor(modelItem => pkk.LanKham)</td>
+                        <td>@Html.DisplayFor(modelItem => pkk.NgayKham)</td>
+                        @foreach (quanLyPhongMach.Models.NhanVien nv in ViewBag.nvv)
+                        {
+                            if (pkk.MaNV == nv.MaNV)
+                            {
+                                <td>@Html.DisplayFor(modelItem => nv.TenNV)</td>
+                            }
+                        }
+                        <td>@Html.DisplayFor(modelItem => pkk.NDDieuTri)</td>
+                        <td>@Html.DisplayFor(modelItem => pkk.ChiPhiKham)</td>
+                        <td></td>
+                        <td>@Html.DisplayFor(modelItem => pkk.Status)</td>
+                    </tr>
+                    stt++;
+                }
+
+            </table>
+
+
+            <div class="tong-cong">
+                <p>Tổng Cộng</p>
+                <input type="text" value="" readonly />
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+            // Bắt sự kiện khi form được submit
+            $('form').submit(function (e) {
+                // Ngăn chặn hành động mặc định của form
+                e.preventDefault();
+                // Lấy giá trị từ input tìm kiếm
+                var searchString = $('#SearchString').val().toLowerCase();
+                // Lặp qua từng hàng trong bảng
+                $('#xmxkxk1 tr').each(function () {
+                    // Kiểm tra xem hàng có phải là header không
+                    if (!$(this).is(':first-child')) {
+                        // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                        var tdText = $(this).find('td:eq(1)').text().toLowerCase();
+                        // So sánh với chuỗi tìm kiếm
+                        if (tdText.indexOf(searchString) === -1) {
+                            // Ẩn hàng nếu không khớp
+                            $(this).hide();
+                        } else {
+                            // Hiện hàng nếu khớp
+                            $(this).show();
+                        }
+                    }
+                });
+            });
+        });
+
+
+        // Lấy tất cả các hàng trong bảng có id là "xmxkxk"
+        var rows = document.querySelectorAll("#xmxkxk1 tr");
+        var total = 0;
+
+        // Lặp qua từng hàng
+        for (var i = 1; i < rows.length; i++) {
+            // Lấy giá trị trong cột "Tổng Cộng (VNĐ)" của hàng hiện tại
+            var cell = rows[i].querySelector("td:nth-last-child(6)"); // Đây là cột chứa tổng giá tiền
+            var value = parseFloat(cell.textContent.trim().replace("VNĐ", "").replace(",", ""));
+
+            // Kiểm tra nếu giá trị không phải là NaN
+            if (!isNaN(value)) {
+                // Thêm giá trị này vào tổng cộng
+                total += value;
+            }
+        }
+
+        // Đặt giá trị của input có class là "tong-cong" thành tổng cộng
+        document.querySelector(".tong-cong input").value = total.toLocaleString('vi-VN') + " VNĐ";
+
+
+        var btn = document.getElementById('btn-1-1-1--1');
+
+
+        btn.addEventListener('click', function () {
+
+            location.reload();
+        });
+    </script>

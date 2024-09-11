@@ -1,0 +1,194 @@
+﻿
+@{
+    ViewBag.Title = "Danh Sách Bệnh Nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/ChucNang.css")
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    @Styles.Render("~/Assets/CSS/ChucNang/Reponsive-chucnang.css")
+}
+<style>
+    .form-inlsiness {
+        display: flex;
+        gap: 10px
+    }
+
+    input#SearchString22 {
+        width: 300px;
+        height: 41px;
+    }
+
+    select#MaHSDropdown {
+        width: 185px;
+    }
+
+    select#MaBSDropdown {
+        width: 185px;
+    }
+
+    .tt1 {
+        display: flex;
+        gap: 10px;
+    }
+    a {
+        text-decoration:none;
+        color :white;
+    }
+
+    select#MaHSDropdown {
+        width: 165px;
+    }
+
+    select#MaBSDropdown {
+        width: 165px;
+    }
+</style>
+
+<div class="container ">
+    <h2>Danh Sách Bệnh Nhân</h2>
+    <div class="kb-2">
+        <div class="tool-bar-1">
+            <button class="btn_class"><a href="~/ChucNang/ThemBenhNhan">Thêm BN</a></button>
+            <button class="btn_class">Sửa</button>
+            <a href="~/ChucNang/KhamBenh">
+                <button class="btn_class">Quay Trở Lại</button>
+            </a>
+        </div>
+        <div class="kb-form">
+            <div class="thong-tin">
+                <div class="tt-content">
+                    <h4 style="color:white;font-size:15px">Thông Tin Bênh Nhân</h4>
+                </div>
+                <div class="tt-body">
+                    @foreach (quanLyPhongMach.Models.HoSoBN bn in ViewBag.hsbns)
+                    {
+                        <div class="tt">
+                            <p>Họ Và Tên:</p>
+                            <input type="text" value="@bn.HoTen" />
+                        </div>
+                        <div class="tt">
+                            <p>Giới Tính:</p>
+                            @Html.DropDownList("MaHS", (IEnumerable<SelectListItem>)ViewBag.bnn, new { @class = "form-control", id = "MaHSDropdown" })
+                        </div>
+                        <div class="tt">
+                            <p>Điện Thoại:</p>
+                            <input type="text" value="@bn.DienThoai" />
+                        </div>
+                        <div class="tt">
+                            <p>Ngày Sinh:</p>
+                            <input type="text" value="@bn.NgaySinh" />
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="thong-tin">
+                <div class="tt-content">
+                    <h4 style="color:white;font-size:15px">Thông Tin Bác Sĩ</h4>
+                </div>
+                <div class="tt-body">
+
+                    <div class="tt">
+                        <p>Bác Sĩ:</p>
+                        @Html.DropDownList("MaNV", (IEnumerable<SelectListItem>)ViewBag.nv, new { @class = "form-control", id = "MaBSDropdown" })
+                    </div>
+                    <div class="tt">
+                        <p>Ghi Chú:</p>
+                        <input type="text" value="" />
+                    </div>
+                    <div class="tt">
+                        <p>Lý Do:</p>
+                        <input type="text" value="" />
+                    </div>
+                    <div class="tt1">
+                        <button class="btn_class">Đăng Ký Khám</button>
+                        <button class="btn_class">Vào Khám Ngay</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="tbx2">
+
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home1">Danh Sách Bệnh Nhân</a></li>
+                <li><a data-toggle="tab" href="#menu5">Danh Sách Hẹn Khám</a></li>
+
+            </ul>
+
+            <div class="tab-content">
+                <div id="home1" class="tab-pane fade in active">
+                    <table id="xmxkxk222" style="margin-top:10px" class="table">
+                        <tr>
+                            <th style="width:30px">STT</th>
+                            <th><p>Mã BN</p></th>
+                            <th><p>Tên Bệnh Nhân</p></th>
+                            <th><p>Giới Tính</p></th>
+                            <th><p>Ngày Sinh</p></th>
+                            <th><p>Nghề Nghiệp</p></th>
+                            <th><p>Điện Thoại</p></th>
+                            <th><p>Địa Chỉ</p></th>
+                            <th><p>TS Bệnh</p></th>
+                            <th><p>Ghi Chú</p></th>
+                            <th><p>Tag ID</p></th>
+                        </tr>
+                        @{
+                            var stt = 1;
+                        }
+                        @foreach (quanLyPhongMach.Models.HoSoBN a in ViewBag.hsbns)
+                        {
+                            <tr>
+                                <td>@stt</td>
+                                <td>@Html.DisplayFor(modelItem => a.MaHS)</td>
+                                <td>@Html.DisplayFor(modelItem => a.HoTen)</td>
+                                <td>@Html.DisplayFor(modelItem => a.Phai)</td>
+                                <td>@Html.DisplayFor(modelItem => a.NgaySinh)</td>
+                                <td>@Html.DisplayFor(modelItem => a.NgheNghiep)</td>
+                                <td>@Html.DisplayFor(modelItem => a.DienThoai)</td>
+                                <td>@Html.DisplayFor(modelItem => a.DiaChi)</td>
+                                <td>@Html.DisplayFor(modelItem => a.TSBenh)</td>
+                                <td>@Html.DisplayFor(modelItem => a.GhiChu)</td>
+                                <td>@Html.DisplayFor(modelItem => a.TagID)</td>
+                            </tr>
+                            stt++;
+                        }
+                    </table>
+                </div>
+                <div id="menu5" class="tab-pane fade">
+                    <div class="tool-bar-1" style="margin-top:15px">
+                        <input type="text" placeholder="Nhập Vào để tìm" style="height:33px" />
+
+                        <div class="x1">
+                            <p>Từ</p>
+                            <input type="date" style="height:33px" />
+                        </div>
+                        <div class="x1">
+                            <p>Đến</p>
+                            <input type="date" style="height:33px" />
+                        </div>
+                        <button class="btn_class">Tạo Mới</button>
+                    </div>
+                    <div class="t2x2">
+                        <table id="xmxkxk222" style="margin-top:-2px" class="table">
+                            <tr>
+                                <th style="width:30px"></th>
+
+                                <th><p>Tên Bệnh Nhân</p></th>
+                                <th><p>Giới Tính</p></th>
+                                <th><p>Ngày Sinh</p></th>
+                                <th><p>Tên Bác Sĩ</p></th>
+                                <th><p>Ngày Hẹn</p></th>
+                                <th><p>Nội Dung</p></th>
+                                <th><p>Ghi Chú</p></th>
+                                <th><p>Tag ID</p></th>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

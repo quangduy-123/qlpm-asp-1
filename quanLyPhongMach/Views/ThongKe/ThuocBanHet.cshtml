@@ -1,0 +1,196 @@
+﻿
+@{
+    ViewBag.Title = "Thống Kê Thuốc Bán Hết - Thống Kê";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    input#searchQuery {
+        height: 33px;
+        width: 250px;
+    }
+
+    .form-group {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .toolbar-tk-1 {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .tktk {
+        display: flex;
+        gap: 15px;
+    }
+
+    .toolbar-tk {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    input#SearchString {
+        height: 33px;
+        width: 300px;
+        padding: 0 15px;
+        border-radius: 5px;
+    }
+
+    .skk12 {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+</style>
+
+<div class="container">
+    <h2>Thống Kê Thuốc Đã Bán Hết</h2>
+    <br />
+    <div class="toolbar-tk">
+        <div class="tktk">
+            <button class="btn_class">Lấy Dữ Liệu</button>
+            <button class="btn_class">Xem Trước</button>
+            <button class="btn_class">In</button>
+            <button class="btn_class" id="thh">Thuốc Bán Hết</button>
+            <a href="~/ThongKe/ThuocHetHan"><button class="btn_class" id="thh">Thuốc Hết Hạn</button></a>
+            <a href="~/ThongKe/ThongKeKhoThuoc"><button class="btn_class" id="thh">Quay Trở Lại</button></a>
+        </div>
+        <div class="toolbar-tk-12">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group form-inliness">
+                    @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Nhập từ khóa  tìm kiếm" })
+
+                    <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+                </div>
+
+            }
+        </div>
+    </div>
+
+    <div class="table-ton-kho-thuoc">
+
+        <table id="xmxkxk" class="table">
+            <tr>
+                <th style="width:30px">STT</th>
+                <th><p>Tên Thuốc</p></th>
+                <th><p>Loại Thuốc</p></th>
+                <th><p>Số Lô</p></th>
+                <th><p>Số Lượng Tồn</p></th>
+                <th><p>Đơn Vị</p></th>
+                <th><p>Ngày Hết Hạn</p></th>
+                <th><p>Nhà Cung Cấp</p></th>
+            </tr>
+            @{
+                var stt = 1;
+            }
+            @foreach (quanLyPhongMach.Models.DMKhoThuoc2 thuoc in ViewBag.ktt)
+            {
+
+                if (thuoc.SoLuongTon == 0)
+                {
+
+
+                    <tr>
+                        <td>@stt</td>
+                        @foreach (quanLyPhongMach.Models.DSThuoc2 dst in ViewBag.dsttt)
+                        {
+                            if (thuoc.MaThuoc == dst.MaThuoc)
+                            {
+                                <td>@Html.DisplayFor(modelItem => dst.TenThuoc)</td>
+
+                            }
+                        }
+                        @foreach (quanLyPhongMach.Models.DSThuoc2 thuocs in ViewBag.dsttt)
+                        {
+                            if (thuoc.MaThuoc == thuocs.MaThuoc)
+                            {
+                                foreach (quanLyPhongMach.Models.LoaiThuoc lt in ViewBag.ltt)
+                                {
+                                    if (thuocs.LoaiThuoc == lt.IDLoai)
+                                    {
+                                        <td>@Html.DisplayFor(modelItem => lt.TenLoai)</td>
+                                    }
+                                }
+
+                            }
+                        }
+                        <td>@Html.DisplayFor(modelItem => thuoc.SoLoThuoc)</td>
+
+                        <td>@Html.DisplayFor(modelItem => thuoc.SoLuongTon)</td>
+                        <td>@Html.DisplayFor(modelItem => thuoc.SoLuongTon)</td>
+                        @foreach (quanLyPhongMach.Models.DonViTinh dvt in ViewBag.dvt)
+                        {
+                            if (thuoc.IDDonVi == dvt.IDDonVi)
+                            {
+                                <td>@Html.DisplayFor(modelItem => dvt.DonViThuoc)</td>
+                            }
+                        }
+                        <td>@Html.DisplayFor(modelItem => thuoc.NgayHetHan)</td>
+                        <td>@Html.DisplayFor(modelItem => thuoc.NhaCungCap)</td>
+                    </tr>
+                    stt++;
+                }
+            }
+        </table>
+
+
+    </div>
+</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('#xmxkxk tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                    var tdText = $(this).find('td:eq(1)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+
+
+    // thuốc bán hết
+    $(document).ready(function () {
+        $('#thuoc-ban-het').click(function () {
+            $('.table-ton-kho-thuoc tr').each(function () {
+                var quantity = parseInt($(this).find('td:eq(4)').text());
+                if (quantity === 0 || $(this).is('th')) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+
+
+
+</script>

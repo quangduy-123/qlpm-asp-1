@@ -1,0 +1,93 @@
+﻿
+
+@{
+    ViewBag.Title = "Chứng Từ Xuất";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Assets/CSS/ChucNang.css" rel="stylesheet" />
+}
+
+<style>
+
+    .xxk2x {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .dkdk2x {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<div class="container">
+    <div class="chung-tu-xuat-toolbar">
+        <div class="ctx-1">
+            <p>Từ</p>
+            <input type="date" class="date-time-masster" />
+        </div>
+        <div class="ctx-1">
+            <p>Đến</p>
+            <input type="date" class="date-time-masster" />
+        </div>
+        <button class="btn_class">Lấy Dữ Liệu</button>
+        <button class="btn_class">Xem Trước</button>
+        <button class="btn_class">In</button>
+    </div>
+    <div class="ctx-body">
+        <p style="font-weight:bold;font-size:22px;margin-top:20px">Báo Cáo Chứng Từ Xuất ̣̣̣(Kéo Tên Một Cột Vào Để Nhóm Dữ Liệu) </p>
+        <div class="ctx-body-table-draw">
+            <div class="txx2">
+                <div class="ctx-body-table-draw-1">
+                    <table id="xmxkxk222" style="margin-top:-2px" class="table">
+                        <tr>
+                            <th style="width:30px">STT</th>
+                            <th><p>Số CT</p></th>
+                            <th><p>Ngày Lập</p></th>
+                            <th><p>Bệnh Nhân</p></th>
+
+                        </tr>
+
+
+
+
+                    </table>
+
+                </div>
+                <button class="btn_class" id="btn0-2x">Xóa Chứng Từ</button>
+            </div>
+            <div class="txx2">
+                <div class="ctx-body-table-draw-1">
+                    <table id="xmxkxk222x" style="margin-top:-2px" class="table">
+                        <tr>
+                            <th style="width:30px">STT</th>
+                            <th><p>Tên Thuốc</p></th>
+                            <th><p>Số Lô</p></th>
+                            <th><p>Đơn Vị</p></th>
+                            <th><p>SL Xuất</p></th>
+                            <th><p>Giá Bán</p></th>
+                            <th><p>Tổng Tiền</p></th>
+                            <th><p>Ngày Bán</p></th>
+                            <th><p>Bệnh nhân</p></th>
+                        </tr>
+
+
+
+
+                    </table>
+
+                </div>
+                <div class="dkdk2x">
+                    <div class="xxk2x">
+                        <button class="btn_class" id="btn0-2x">Sửa</button>
+                        <button class="btn_class" id="btn0-2x">Xóa</button>
+                    </div>
+                    <div class="xxk2x">
+                        <p>Tổng Cộng</p>
+                        <input type="text" value="0.00VNĐ" style="height:33px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

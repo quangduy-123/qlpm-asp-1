@@ -1,0 +1,75 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tranq\\Desktop\\ASPNET.CORE 8\\BAITAp\\quanLyPhongMach\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FC3DBADC-D270-4F18-BC19-0743842A8966}|quanLyPhongMach\\quanLyPhongMach.csproj|c:\\users\\tranq\\desktop\\aspnet.core 8\\baitap\\quanlyphongmach\\quanlyphongmach\\views\\loaithuocs\\loaithuoc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC3DBADC-D270-4F18-BC19-0743842A8966}|quanLyPhongMach\\quanLyPhongMach.csproj|solutionrelative:quanlyphongmach\\views\\loaithuocs\\loaithuoc.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC3DBADC-D270-4F18-BC19-0743842A8966}|quanLyPhongMach\\quanLyPhongMach.csproj|c:\\users\\tranq\\desktop\\aspnet.core 8\\baitap\\quanlyphongmach\\quanlyphongmach\\views\\hethong\\yeucauhethong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FC3DBADC-D270-4F18-BC19-0743842A8966}|quanLyPhongMach\\quanLyPhongMach.csproj|solutionrelative:quanlyphongmach\\views\\hethong\\yeucauhethong.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC3DBADC-D270-4F18-BC19-0743842A8966}|quanLyPhongMach\\quanLyPhongMach.csproj|C:\\Users\\tranq\\Desktop\\ASPNET.CORE 8\\BAITAp\\quanLyPhongMach\\quanlyphongmach\\controllers\\hethongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FC3DBADC-D270-4F18-BC19-0743842A8966}|quanLyPhongMach\\quanLyPhongMach.csproj|solutionrelative:quanlyphongmach\\controllers\\hethongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 224,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LoaiThuoc.cshtml",
+              "DocumentMoniker": "C:\\Users\\tranq\\Desktop\\ASPNET.CORE 8\\BAITAp\\quanLyPhongMach\\quanLyPhongMach\\Views\\LoaiThuocs\\LoaiThuoc.cshtml",
+              "RelativeDocumentMoniker": "quanLyPhongMach\\Views\\LoaiThuocs\\LoaiThuoc.cshtml",
+              "ToolTip": "C:\\Users\\tranq\\Desktop\\ASPNET.CORE 8\\BAITAp\\quanLyPhongMach\\quanLyPhongMach\\Views\\LoaiThuocs\\LoaiThuoc.cshtml",
+              "RelativeToolTip": "quanLyPhongMach\\Views\\LoaiThuocs\\LoaiThuoc.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-22T08:06:59.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "YeuCauHeThong.cshtml",
+              "DocumentMoniker": "C:\\Users\\tranq\\Desktop\\ASPNET.CORE 8\\BAITAp\\quanLyPhongMach\\quanLyPhongMach\\Views\\HeThong\\YeuCauHeThong.cshtml",
+              "RelativeDocumentMoniker": "quanLyPhongMach\\Views\\HeThong\\YeuCauHeThong.cshtml",
+              "ToolTip": "C:\\Users\\tranq\\Desktop\\ASPNET.CORE 8\\BAITAp\\quanLyPhongMach\\quanLyPhongMach\\Views\\HeThong\\YeuCauHeThong.cshtml",
+              "RelativeToolTip": "quanLyPhongMach\\Views\\HeThong\\YeuCauHeThong.cshtml",
+              "ViewState": "AQIAAHEAAAAAAAAAAAAQwHYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-22T07:32:02.972Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HeThongController.cs",
+              "DocumentMoniker": "C:\\Users\\tranq\\Desktop\\ASPNET.CORE 8\\BAITAp\\quanLyPhongMach\\quanLyPhongMach\\Controllers\\HeThongController.cs",
+              "RelativeDocumentMoniker": "quanLyPhongMach\\Controllers\\HeThongController.cs",
+              "ToolTip": "C:\\Users\\tranq\\Desktop\\ASPNET.CORE 8\\BAITAp\\quanLyPhongMach\\quanLyPhongMach\\Controllers\\HeThongController.cs",
+              "RelativeToolTip": "quanLyPhongMach\\Controllers\\HeThongController.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAACwAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T02:57:30.63Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

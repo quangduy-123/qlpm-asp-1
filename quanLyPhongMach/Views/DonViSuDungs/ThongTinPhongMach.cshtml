@@ -1,0 +1,72 @@
+﻿@model quanLyPhongMach.Models.DonViSuDung
+
+@{
+    ViewBag.Title = "Thông Tin Phòng Mạch";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    .ttpm-1 {
+        width:400px;
+        display:flex;
+        justify-content:space-between;
+        height:auto;
+        align-items:center;
+    }
+
+    .ttpm {
+        width: 430px;
+        padding:5px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border: 1px solid #333;
+        border-radius: 6px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+</style>
+
+<div class="container">
+    
+
+    <div class="ttpm">
+        <h2>Thông tin phòng mạch</h2>
+        <hr />
+        <div class="ttpm-1">
+            <p>Tên Phòng Mạch :</p>
+            <input type="text" value="@Model.TenPM" />
+        </div>
+        <div class="ttpm-1">
+            <p>Địa Chỉ :</p>
+            <input type="text" value="@Model.DiaChiPM" />
+        </div>
+        <div class="ttpm-1">
+            <p>Điện Thoại :</p>
+            <input type="text" value="@Model.DienThoaiPM" />
+        </div>
+        <div class="ttpm-1">
+            <p>Email :</p>
+            <input type="text" value="@Model.EmailPM" />
+        </div>
+        <div class="ttpm-1">
+            <p>Fax :</p>
+            <input type="text" value="" />
+        </div>
+        <div class="ttpm-1">
+            <p>Mã Số Thuế :</p>
+            <input type="text" value="" />
+        </div>
+
+        <div class="ttpm-1">
+            <a href="~/Home/Index"><button class="btn btn_class btn-primary">Quay Trở Lại</button></a>
+        </div>
+    </div>
+    
+   
+</div>
+
+
+

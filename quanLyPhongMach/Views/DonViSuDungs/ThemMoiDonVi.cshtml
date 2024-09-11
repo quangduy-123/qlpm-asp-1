@@ -1,0 +1,178 @@
+﻿@model quanLyPhongMach.Models.DonViSuDung
+
+@{
+    ViewBag.Title = "Thêm Mới Đơn Vị - Đơn Vị";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+
+<style>
+    h4 {
+        font-size: 22px
+    }
+
+    .form-group {
+        display: flex;
+        width: 350px;
+        justify-content: space-between;
+    }
+
+    .form-horizontal {
+        width: 380px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        border: 1px solid #333;
+        border-radius: 6px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .ccss {
+        display: flex;
+        gap: 12px;
+    }
+    /*Popup*/
+    .popup {
+        width: 400px;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        border: 0.5px solid #333;
+        visibility: hidden
+    }
+
+
+
+        .popup img {
+            width: 100px;
+            margin-top: -50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .popup h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+        }
+
+        .popup #btn_btn {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6fd649;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+</style>
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thêm Mới Đơn Vị</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <p>Tên Đơn Vị :</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenDonVi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenDonVi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>Tên Phòng Mạch :</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenPM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TenPM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>Địa Chỉ :</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaChiPM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DiaChiPM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>Điện Thoại :</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DienThoaiPM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DienThoaiPM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>Fax :</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FaxPM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FaxPM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>Email :</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailPM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailPM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <p>Mã Số Thuế :</p>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaSoThuePM, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MaSoThuePM, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm Mới" onclick="openPopup()" class="btn btn_class btn-default" />
+                <button class="btn_class">
+                    @Html.ActionLink("Quay Trở Lại", "DonViSuDung")
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+</div>
+
+<div class="popup" id="popup">
+    <img src="~/Assets/IMGS/404-tick.png" alt="tich-xm" />
+    <h2>Cảm Ơn</h2>
+    <p>Bạn Đã Thêm Thành Công Thông Tin Đơn Vị</p>
+</div>
+
+@section scripts {
+    <script>
+        function openPopup() {
+            var popup = document.getElementById("popup");
+            popup.style.visibility = "visible";
+            setTimeout(closePopup, 5000); 
+        }
+
+        function closePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.visibility = "hidden";
+        }
+    </script>
+}

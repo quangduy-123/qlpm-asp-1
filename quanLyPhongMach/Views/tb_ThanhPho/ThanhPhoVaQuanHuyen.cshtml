@@ -1,0 +1,171 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.tb_ThanhPho>
+
+
+@{
+    ViewBag.Title = "Thành Phố";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    .dkkd2 {
+        display:flex;
+        justify-content:space-between;
+    }
+
+    input#SearchString {
+        width: 300px;
+        height: 33px;
+        padding: 0 20px;
+    }
+
+    a {
+        text-decoration:none;
+        color :white;
+    }
+</style>
+<div class="container">
+    <div class="table_chitietdichvu thanhpho">
+        <div class="dkkd2">
+            <div class="x2m12l">
+                <a href="~/tb_ThanhPho/ThanhPho">
+                    <button class="btn_class" id="cncnn22cs2_b2tn">Thông Tin Thành Phố</button>
+                </a>
+                <a href="~/tb_QuanHuyen/QuanHuyen">
+                    <button class="btn_class" id="cncnn22cs2_b2tn">Thông Tin Quận Huyện</button>
+                </a>
+               
+
+            </div>
+            @using (Html.BeginForm())
+            {
+                <div class="form-group form-inliness">
+                    @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Nhập từ khóa  tìm kiếm" })
+
+                    <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+                </div>
+
+            }
+        </div>
+        <div class="thanhphono1">
+            <div class="droplist-thanh-pho">
+                <p>Tên Thành Phố:</p>
+                <div class="custom-dropdown">
+                    @Html.DropDownList("MaThanhPho", (IEnumerable<SelectListItem>)ViewBag.tpp, new { @class = "form-control", id = "MaThanhPhoDropdown" })
+                </div>
+            </div>
+            <table border="1" width="100%" id="xmxkxk">
+                <thead>
+                    <tr>
+                        <th style="width: 15px">STT</th>
+                        <th style="display: none">Mã Thành Phố</th>
+                        <th>Tên Quận Huyện</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var stt = 1;
+                    }
+                    @foreach (quanLyPhongMach.Models.tb_QuanHuyen item in ViewBag.qhh)
+                    {
+                        <tr class="quanhuyen-row" data-mathanhpho="@item.MaThanhPho">
+                            <td>@stt</td>
+                            <td style="display: none">@item.MaThanhPho</td>
+                            <td>@item.TenQuanHuyen</td>
+                        </tr>
+                        stt++;
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('#xmxkxk tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                    var tdText = $(this).find('td:eq(2)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('#MaThanhPhoDropdown').change(function () {
+            var selectedCity = $(this).val();
+            $('.quanhuyen-row').hide();
+            // Ẩn tất cả các hàng trước khi hiển thị lại
+
+            // Hiển thị các hàng có mã thành phố tương ứng với thành phố được chọn
+            $('.quanhuyen-row[data-mathanhpho="' + selectedCity + '"]').show();
+        });
+    });
+</script>
+
+
+
+<style>
+
+
+    .droplist-thanh-pho {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px
+    }
+
+    .custom-dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+        .custom-dropdown select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+            .custom-dropdown select:focus {
+                outline: none;
+                border-color: #007bff;
+            }
+
+        .custom-dropdown::after {
+            content: "\25BC";
+            position: absolute;
+            top: calc(50% - 10px);
+            right: 5px;
+            pointer-events: none;
+        }
+</style>

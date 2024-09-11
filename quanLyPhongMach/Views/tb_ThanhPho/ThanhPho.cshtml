@@ -1,0 +1,155 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.tb_ThanhPho>
+
+@{
+    ViewBag.Title = "Thành Phố";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    input#searchQuery {
+        height: 33px;
+        width: 250px;
+    }
+
+    .form-group {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .toolbar-tk-1 {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .tktk {
+        display: flex;
+        gap: 15px;
+    }
+
+    .toolbar-tk {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    .skk12 {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+
+    .dkaskmm2 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    input#SearchString {
+        width: 300px;
+        height: 33px;
+        padding: 0 20px;
+    }
+
+    .xxss {
+        display:flex;
+        gap:11px
+    }
+</style>
+
+<div class="container">
+    <div class="dkaskmm2">
+        <div class="xxss">
+            <button class="btn_class">
+                @Html.ActionLink("Thêm Mới", "ThemMoiThanhPho")
+            </button>
+            <a href="~/tb_ThanhPho/ThanhPhoVaQuanHuyen">
+                <button class="btn_class">
+                    Quay Trở Lại
+                </button>
+            </a>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inliness">
+                @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Nhập từ khóa  tìm kiếm" })
+
+                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+            </div>
+
+        }
+    </div>
+    <table class="table" id="xmxkxk">
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+              Thành Phố
+            </th>
+            <th></th>
+        </tr>
+        @{ 
+            var stt = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenThanhPho)
+                </td>
+                <td>
+                    <button class="btn_class" id="kd112">
+                        @Html.ActionLink("Sửa", "SuaThanhPho", new { id = item.MaThanhPho })
+                    </button>
+                    <button class="btn_class" id="kd112">
+                        @Html.ActionLink("Xóa", "XoaThanhPho", new { id = item.MaThanhPho })
+                    </button>
+                </td>
+            </tr>
+            stt++;
+        }
+
+    </table>
+
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('#xmxkxk tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                    var tdText = $(this).find('td:eq(1)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+
+
+</script>

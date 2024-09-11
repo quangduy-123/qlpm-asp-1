@@ -1,0 +1,85 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.HoSoBN>
+@{
+    ViewBag.Title = "Thêm Bệnh Nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Assets/CSS/ChucNang.css" rel="stylesheet" />
+    @Styles.Render("~/Assets/CSS/ChucNang/Reponsive-chucnang.css")
+}
+
+
+<div class="container">
+    <div class="box-tbn">
+        <div class="thong-tin-benh-nhan">
+            <h4>Thông Tin Bệnh Nhân</h4>
+            @foreach (quanLyPhongMach.Models.HoSoBN bn in ViewBag.hsbn)
+            {
+                <div class="ttbn1">
+                    <p>Mã BN:</p>
+                    <input type="text" value="@bn.MaHS" style="width:200px" />
+                </div>
+                <div class="ttbn1">
+                    <p>Họ Và Tên:</p>
+                    <input type="text" value="@bn.HoTen" style="width:200px" />
+                </div>
+                <div class="ttbn1">
+                    <p>Giới Tính:</p>
+                    @Html.DropDownList("MaHS", (IEnumerable<SelectListItem>)ViewBag.bn, new { @class = "form-control", id = "MaHSDropdown" })
+                </div>
+                <div class="ttbn1">
+                    <p>Ngày Sinh:</p>
+                    <input type="text" value="@bn.NgaySinh" style="width:200px" />
+                </div>
+                <div class="ttbn1">
+                    <p>Địa Chỉ:</p>
+                    <input type="text" value="@bn.DiaChi" style="width:200px" />
+                </div>
+                <div class="ttbn1">
+                    <p>Điện Thoại:</p>
+                    <input type="text" value="@bn.DienThoai" style="width:200px" />
+                </div>
+                <div class="ttbn1">
+                    <p>Ghi Chú:</p>
+                    <input type="text" value="@bn.GhiChu" style="width:200px" />
+                </div>
+                <div class="ttbn1">
+                    <p>Nghề Nghiệp:</p>
+                    <input type="text" value="@bn.NgheNghiep" style="width:200px" />
+                </div>
+                <div class="ttbn1">
+                    <p>TS Bệnh:</p>
+                    <input type="text" value="@bn.TSBenh" style="width:200px" />
+                </div>
+                <div class="ttbn1">
+                    <p>Tag ID:</p>
+                    <input type="text" value="@bn.TagID" style="width:200px" />
+                </div>
+            }
+        </div>
+        <div class="thong-tin-bac-si">
+            <h4>Thông Tin Bác Sĩ</h4>
+
+            <div class="ttbn1">
+                <p>Bác Sĩ:</p>
+                @Html.DropDownList("MaNV", (IEnumerable<SelectListItem>)ViewBag.nv, new { @class = "form-control", id = "MaNVDropdown" })
+            </div>
+
+            <div class="ttbn1">
+                <p>Ghi Chú:</p>
+                <input type="text" value="" style="width:200px" />
+            </div>
+            <div class="ttbn1">
+                <p>Lý Do:</p>
+                <input type="text" value="" style="width:200px" />
+            </div>
+
+
+
+
+        </div>
+        <div class="btn-x22">
+            <button class="btn_class">Thêm</button>
+            <button class="btn_class">Thêm - ĐK Khám</button>
+            <button class="btn_class"><a href="~/ChucNang/DanhSachBenhNhan">Quay Lại</a></button>
+        </div>
+    </div>
+</div>

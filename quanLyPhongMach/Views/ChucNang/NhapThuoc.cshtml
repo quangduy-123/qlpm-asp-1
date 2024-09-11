@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Nhập Thuốc - Chức Năng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Assets/CSS/ChucNang.css" rel="stylesheet" />
+}
+
+<style>
+    input[type="text"] {
+        height: 33px;
+    }
+
+    input#\32 k2k {
+        height: 33px;
+    }
+
+    table#xmxkxk1 {
+        margin-top: -10px;
+    }
+</style>
+
+<div class="container">
+    <div class="nhap-thuoc-1">
+        <div class="tool-bar-nhap-thuoc">
+            <div class="tool-left">
+                @foreach (quanLyPhongMach.Models.ChungTuNhapXuat nx in ViewBag.nx)
+                {
+                    <div class="ttt-1">
+                        <p>Số Chứng Từ :</p>
+                        <input type="text" value="@nx.SoChungTu" />
+                    </div>
+                    <div class="ttt-1">
+                        <p>Số Chứng Từ :</p>
+                        <input type="text" value="@nx.SoHoaDon" />
+                    </div>
+                    <div class="ttt-1">
+                        <p>Ngày Nhập:</p>
+                        <input type="date" id="2k2k" value="@nx.NgayCT" />
+                    </div>
+                }
+            </div>
+            <div class="tool-right">
+                <button class="btn_class">Hủy</button>
+                <button class="btn_class">Lưu</button>
+            </div>
+        </div>
+        <div class="table-1">
+            <table id="xmxkxk1" class="table">
+                <tr>
+                    <th style="width:30px">STT</th>
+                    <th><p>Tên Thuốc</p></th>
+                    <th><p>Số Lô</p></th>
+                    <th><p>Số Lượng Nhập</p></th>
+                    <th><p>Đơn Vị</p></th>
+                    <th><p>Đơn Giá(VNĐ)</p></th>
+                    <th><p>VAT(%)</p></th>
+                    <th><p>Giá Tiền (VNĐ)</p></th>
+                    <th><p>Ngày Nhập</p></th>
+                    <th><p>Ngày Hết Hạn</p></th>
+                    <th><p>Nhà Cung Cấp</p></th>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <div class="nhap-thuoc-2">
+        <div class="nhap-thuoc-2-1">
+            <div class="tt-112">
+                <div class="t-1111">
+                    <p>Từ</p>
+                    <input type="date" />
+                </div>
+                <div class="t-1111">
+                    <p>Đến</p>
+                    <input type="date" />
+                </div>
+            </div>
+            <div class="sskskk2">
+                <table id="xmxkxk1" class="table">
+                    <tr>
+                        <th style="width:30px">STT</th>
+                        <th><p>Số CT</p></th>
+                        <th><p>Ngày Lập</p></th>
+                        <th><p>Số HĐ</p></th>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div class="nhap-thuoc-2-2">
+            <h4 style="margin-bottom:20px"> Kéo một cột vào đây để nhóm dữ liệu nhóm đó</h4>
+            <div class="talbe-222">
+                <table id="xmxkxk1" class="table">
+                    <tr>
+                        <th style="width:30px">STT</th>
+                        <th style="width:200px"><p>Tên Thuốc</p></th>
+                        <th style="width:200px"><p>Ngày Hết Hạn</p></th>
+                        <th><p>Số Sô</p></th>
+                        <th style="width:100px"><p>Tồn Đầu</p></th>
+                        <th style="width:100px"><p>Số LN</p></th>
+                        <th><p>Tổng SL</p></th>
+                        <th><p>Đơn Vị</p></th>
+                        <th><p>Giá Nhập (VNĐ)</p></th>
+                        <th><p>VAT(%)</p></th>
+                        <th style="width:100px"><p>Giá Bán(VNĐ)</p></th>
+                        <th style="width:200px"><p>Ngày Nhập</p></th>
+                        <th style="width:200px"><p>Nhà Cung Cấp</p></th>
+
+
+
+
+                    </tr>
+
+                </table>
+            </div>
+            <div class="tong-cong">
+                <div class="kdkd">
+                    <p>Tổng Cộng :</p>
+                    <input type="text" value="0.00 VNĐ" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

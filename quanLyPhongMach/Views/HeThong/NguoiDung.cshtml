@@ -1,0 +1,239 @@
+﻿
+@{
+    ViewBag.Title = "Người Dùng - Hệ Thống";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+<style>
+    .table {
+        color: black;
+    }
+
+    label {
+        color: black;
+    }
+
+    .form-group {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    input[type="text"] {
+        padding: 0 10px;
+        width: 300px;
+        height: 31px;
+    }
+
+    .ttnd {
+        color: black;
+    }
+
+    input[type="password"] {
+        padding: 0 10px;
+    }
+
+    h4 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .toolbar {
+        margin: 12px
+    }
+
+    .tt {
+        width: 477px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .ttnd-1 {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input[type="password"] {
+        width: 300px;
+        height: 33px;
+    }
+
+    .ttnd-body {
+        width: auto;
+        display: flex;
+        gap: 55px;
+    }
+
+    .nv-form-clone1 {
+        border: 1px solid #333;
+        width: 150px;
+        height: 150px;
+    }
+
+    .nd-2 {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+</style>
+
+
+
+<div class="container">
+
+    <div class="nd-1">
+
+
+        <div class="ttnd-body">
+            <div class="ttnd-1">
+                <div class="tt">
+                    <p>Mã Nhân Viên :</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>Tên Nhân Viên :</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>Giới Tính :</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>NGày Sinh :</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>Địa Chỉ :</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>Điện Thoại:</p>
+                    <input type="text" value="" />
+                </div>
+            </div>
+            <div class="ttnd-1">
+                <div class="tt">
+                    <p>Chuyên Môn :</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>Ngoại Ngữ :</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>Chức Vụ :</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>Tài Khoản:</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>Ghi Chú :</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+
+
+                    <p>Đơn Vị :</p>
+                    <input type="text" value="" />
+
+
+                </div>
+            </div>
+            <div class="nv-form" data-add-back-btn="">
+                <div class="nv-form-clone1">
+                    <img src="" id="image" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nd-2">
+
+
+        <table class="table">
+            <tr>
+                <th>STT</th>
+                <th>Mã Nhân Viên</th>
+                <th>Tên Nhân Viên</th>
+                <th>Giới Tính</th>
+                <th>Ngày Sinh</th>
+                <th>Địa Chỉ</th>
+                <th>Điện Thoại</th>
+                <th>Chuyên Môn</th>
+                <th>Ngoại Ngữ</th>
+                <th>Chức Vụ</th>
+                <th>Tài Khoản</th>
+                <th>Ghi Chú</th>
+                <th>Đơn Vị</th>
+            </tr>
+            @{
+                var stt = 1;
+            }
+            @foreach (quanLyPhongMach.Models.NhanVien nv in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@nv.MaNV </td>
+                    <td>@nv.TenNV </td>
+                    <td>@nv.Phai </td>
+                    <td>@nv.NgaySinh </td>
+                    <td>@nv.DiaChi </td>
+                    <td>@nv.DienThoai </td>.
+                    <td>@nv.ChuyenMon </td>
+                    <td>@nv.NgoaiNgu </td>
+                    <td>@nv.ChucVu </td>
+                    <td>@nv.TaiKhoan </td>
+                    <td>@nv.GhiChu </td>
+                    @foreach (quanLyPhongMach.Models.DonViSuDung dv in ViewBag.dv)
+                    {
+                        if (dv.IDDonVi == nv.DonVi)
+                        {
+                            <td>@dv.TenDonVi </td>
+                        }
+
+
+                    }
+
+                </tr>
+                stt++;
+            }
+        </table>
+        @using (Html.BeginForm("NguoiDung", "HeThong", FormMethod.Get))
+        {
+            <div class="form-group">
+                @Html.Label("Tìm Kiếm Nhân Viên:")
+                @Html.TextBox("searchQuery", null, new { @class = "form-control" })
+                <button type="submit" class="btn btn_class btn-primary">Tìm kiếm</button>
+            </div>
+
+        }
+    </div>
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        $('.table tr').click(function () {
+
+            var rowData = $(this).find('td').map(function () {
+                return $(this).text();
+            }).get();
+
+
+            $('.nd-1 input[type="text"]').each(function (index) {
+                $(this).val(rowData[index]);
+            });
+        });
+    });
+</script>
+

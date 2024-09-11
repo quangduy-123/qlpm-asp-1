@@ -1,0 +1,155 @@
+﻿@{
+    ViewBag.Title = "Thống Kê Nhập Xuất - Thống Kê";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    select#ThoiGianNhapDropdown {
+        height: 33px;
+        padding: 6px;
+        margin: 6px;
+    }
+
+    input#SearchString {
+        height: 33px;
+        width: 300px;
+        padding: 0 15px;
+        border-radius: 5px;
+    }
+
+    .toolbar-nhap-xuat {
+        display: flex;
+        gap: 11px;
+        align-items: center;
+        width: auto;
+        height: auto
+    }
+
+    .tool-sss {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+
+<div class="container">
+    <div class="tool-sss">
+        <div class="toolbar-nhap-xuat">
+            <div class="custom-dropdowsn-1">
+                @Html.DropDownList("MaThuoc", (IEnumerable<SelectListItem>)ViewBag.khothuocs1, "Chọn Thời Gian", new { @class = "form-control", id = "ThoiGianNhapDropdown" })
+            </div>
+            <button class="btn_class" id="btn-1-1">Tạo Mới</button>
+            <button class="btn_class" id="btn-1-2">Xem Trước</button>
+            <button class="btn_class" id="btn-1-3">In</button>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inliness">
+                @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Nhập từ khóa  tìm kiếm" })
+
+                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+            </div>
+
+        }
+    </div>
+    <div class="table-nhap-kho">
+        <p style="font-size:22px;font-weight:bold;margin-top:22px;margin-bottom:20px;">Báo Cáo Nhập Kho Thuốc</p>
+        <table id="xmxkxk" class="table">
+            <tr>
+                <th>STT</th>
+                <th>Tên Thuốc</th>
+                <th>Số Lô</th>
+                <th>Đơn Vị</th>
+                <th>Tồn Đầu</th>
+                <th>SL Nhập</th>
+                <th>SL Xuất</th>
+                <th>Tồn Cuối</th>
+            </tr>
+            @{
+                var stt = 1;
+            }
+            @foreach (quanLyPhongMach.Models.DMThuocDonGia thuoc in ViewBag.khothuocc1)
+            {
+                <tr class="ngaynhap-row" data-mangaynhap="@thuoc.MaThuoc">
+                    <td>@stt</td>
+                    <td>
+                        @foreach (quanLyPhongMach.Models.DSThuoc dsthuoc in ViewBag.khothuoc123)
+                        {
+                            if (thuoc.MaThuoc == dsthuoc.MaThuoc)
+                            {
+                                @Html.DisplayFor(modelItem => dsthuoc.TenThuoc)
+                            }
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => thuoc.SoLoThuoc)</td>
+                    <td>
+                        @foreach (quanLyPhongMach.Models.DonViTinh dvt in ViewBag.donvitinh)
+                        {
+                            if (thuoc.IDDonVi == dvt.IDDonVi)
+                            {
+                                @Html.DisplayFor(modelItem => dvt.DonViThuoc)
+                            }
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => thuoc.SoLuongTon)</td>
+                    <td>@Html.DisplayFor(modelItem => thuoc.SoLuongNhap)</td>
+                    <td>0</td>
+                    <td>
+                        @foreach (quanLyPhongMach.Models.DSThuoc dsthuoc in ViewBag.khothuoc123)
+                        {
+                            if (thuoc.MaThuoc == dsthuoc.MaThuoc)
+                            {
+                                @Html.DisplayFor(modelItem => dsthuoc.SoLuongTon)
+                            }
+                        }
+                    </td>
+                </tr>
+                stt++;
+            }
+        </table>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('#xmxkxk tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                    var tdText = $(this).find('td:eq(1)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('#btn-1-1').click(function () {
+            location.reload();
+        });
+
+        $('#ThoiGianNhapDropdown').change(function () {
+            var selectedThuoc = $(this).val();
+            $('.ngaynhap-row').hide();
+            $('.ngaynhap-row[data-mangaynhap="' + selectedThuoc + '"]').show();
+        });
+    });
+</script>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.tb_CanLamSang>
+
+@{
+   
+    @Styles.Render("~/Assets/CSS/Home.css");
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    input#searchQuery {
+        height: 33px;
+        width: 250px;
+    }
+
+    .form-group {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .toolbar-tk-1 {
+        display: flex;
+        gap: 15px;
+        align-items: center
+    }
+
+    .tktk {
+        display: flex;
+        gap: 15px;
+    }
+
+    .toolbar-tk {
+        display: flex;
+        justify-content: space-between;
+        width: auto;
+    }
+
+    .skk12 {
+        display: flex;
+        gap: 12px;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+</style>
+
+<div class="container">
+    <button class="btn_class">
+        @Html.ActionLink("Thêm Mới", "ThemMoiCanLamSang")
+    </button>
+    <table class="table">
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+               Tên Cận Lâm Sàng
+            </th>
+            <th></th>
+        </tr>
+        @{ 
+            var stt = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenCanLamSang)
+                </td>
+                <td>
+                    <button class="btn_class">
+                        @Html.ActionLink("Sửa", "SuaCanLamSang", new { id = item.MaCanLamSang })
+                    </button>
+                    <button class="btn_class">
+                        @Html.ActionLink("Xóa", "XoaCanLamSang", new { id = item.MaCanLamSang })
+                    </button>
+
+                </td>
+            </tr>
+            stt++;
+        }
+
+    </table>
+
+</div>

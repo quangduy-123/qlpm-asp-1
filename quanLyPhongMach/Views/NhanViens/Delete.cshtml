@@ -1,0 +1,307 @@
+﻿@model quanLyPhongMach.Models.NhanVien
+
+@{
+    ViewBag.Title = " Xóa Danh Sách Nhân Viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+
+<style>
+
+    /*Popup*/
+    .popup {
+        width: 400px;
+        background: #fff;
+        border-radius: 6px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        padding: 0 30px 30px;
+        color: #333;
+        border: 0.5px solid #333;
+        display:none;
+    }
+
+
+
+        .popup img {
+            width: 100px;
+            margin-top: -50px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .popup h2 {
+            font-size: 38px;
+            font-weight: 500;
+            margin: 30px 0 10px;
+        }
+
+        .popup #btn_btn {
+            width: 100%;
+            margin-top: 50px;
+            padding: 10px 0;
+            background: #6fd649;
+            color: #fff;
+            border: 0;
+            outline: none;
+            font-size: 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+
+    .delete-nhanvien {
+        color: black;
+        width: 1200px;
+        border: 1px solid black;
+        padding: 10px;
+        margin: auto auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .cc {
+        width: 320px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-fo2m {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .form-x2 {
+        width: 400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        border: 1px solid white;
+        padding: 10px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .btn-default {
+        text-decoration: none;
+        color: white;
+        padding: 8px 12px;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #2e6da4;
+    }
+
+        .btn-default:hover {
+            background-color: #286090;
+            border-color: #204d74;
+        }
+
+    .cc4 {
+        display: grid;
+        grid-template-columns: 33% 33% 34%;
+        grid-auto-rows: 40px;
+    }
+</style>
+
+<div class="container">
+    <div class="delete-nhanvien">
+        <h2>Xóa Nhân Viên</h2>
+        <div class="nxo2">
+            <h4 style="margin-bottom:15px;">Nhân Viên Hiện Tại</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <br />
+                <div class="cc4">
+                    <div class="cc">
+                        <dt>
+                            <p>Tên Nhân Viên :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TenNV)
+                        </dd>
+                    </div>
+
+
+                    <div class="cc">
+                        <dt>
+                            <p>Giới Tính :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Phai)
+                        </dd>
+                    </div>
+
+                    <div class="cc">
+                        <dt>
+                            <p>Ngày Sinh :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.NgaySinh)
+                        </dd>
+
+                    </div>
+                </div>
+
+                <div class="cc4">
+                    <div class="cc">
+                        <dt>
+                            <p>Địa Chỉ :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DiaChi)
+                        </dd>
+                    </div>
+
+                    <div class="cc">
+                        <dt>
+                            <p>Điện Thoại :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DienThoai)
+                        </dd>
+                    </div>
+
+                    <div class="cc">
+                        <dt>
+                            <p>Chuyên Môn :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ChuyenMon)
+                        </dd>
+                    </div>
+
+                </div>
+
+                <div class="cc4">
+                    <div class="cc">
+                        <dt>
+                            <p>Ngoại Ngữ :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.NgoaiNgu)
+                        </dd>
+                    </div>
+
+                    <div class="cc">
+                        <dt>
+                            <p>Chức Vụ :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ChucVu)
+                        </dd>
+
+                    </div>
+
+                    <div class="cc">
+                        <dt>
+                            <p>Tài Khoản :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.TaiKhoan)
+                        </dd>
+                    </div>
+
+                </div>
+                <div class="cc4">
+                    <div class="cc">
+                        <dt>
+                            <p>Mật Khẩu :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.MatKhauTC)
+                        </dd>
+                    </div>
+
+
+                    <div class="cc">
+                        <dt>
+                            <p>Ghi Chú :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.GhiChu)
+                        </dd>
+                    </div>
+
+
+                    <div class="cc">
+                        <dt>
+                            <p> Tên Đơn Vị :</p>
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DonViSuDung.TenDonVi)
+                        </dd>
+                    </div>
+
+                </div>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <div class="btn-fo2m">
+                        <input type="submit" value="Xóa Nhân Viên" class="btn btn-default" id="deleteBtn" />
+                        <button class="btn_class" id="btn-x2x">
+                            @Html.ActionLink("Quay Trở Lại Trang Phân Quyền", "PhanQuyenNhanVien")
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.getElementById("deleteBtn").addEventListener("click", function (event) {
+
+        
+        var xacNhan = confirm("Bạn có muốn xóa nhân viên không?");
+
+       
+        if (xacNhan) {
+            console.log("Nhân viên đã được xóa.");
+
+            
+            document.getElementById("popup").style.display = "block";
+        }
+    });
+</script>
+
+
+
+@*Thông Báo*@
+<div class="popup" id="popup">
+    <img src="~/Assets/IMGS/404-tick.png" alt="tich-xm" />
+    <h2>Cảm Ơn</h2>
+    <p>Bạn Đã Xóa Thành Công Nhân Viên</p>
+
+</div>
+

@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "Hồ Sơ Bệnh Nhân - Chức Năng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Assets/CSS/ChucNang.css" rel="stylesheet" />
+}
+
+<style>
+    select#MaBSDropdown, select#MaHSDropdown {
+        width: 173px;
+    }
+    input#SearchString {
+        height: 33px;
+        width: 311px;
+        margin-top: 10px;
+        padding: 0 20px;
+    }
+</style>
+<div class="container">
+    <div class="tool-bar-ho-so-benh-nhan">
+        <button class="btn_class" id="btn-x2-1"><a href="~/ChucNang/ThemBenhNhan">Thêm</a></abbr></button>
+        <button class="btn_class" id="btn-x2-2">Sửa</button>
+        <button class="btn_class" id="btn-x2-3">Xem Trước</button>
+        <button class="btn_class" id="btn-x2-4">In</button>
+        <button class="btn_class" id="btn-x2-4">Tạo Mới</button>
+    </div>
+    <div class="list-thong-tin">
+        <div class="thong-tin">
+            <div class="tt-content">
+                <h4 style="color:white;font-size:15px">Thông Tin Bênh Nhân</h4>
+            </div>
+            <div class="tt-body">
+                @foreach (quanLyPhongMach.Models.HoSoBN bn in ViewBag.hsbns)
+                {
+                    <div class="tt">
+                        <p>Họ Và Tên:</p>
+                        <input type="text" value="@bn.HoTen" />
+                    </div>
+                    <div class="tt">
+                        <p>Giới Tính:</p>
+                        @Html.DropDownList("MaHS", (IEnumerable<SelectListItem>)ViewBag.bn, new { @class = "form-control", id = "MaHSDropdown" })
+                    </div>
+                    <div class="tt">
+                        <p>Điện Thoại:</p>
+                        <input type="text" value="@bn.DienThoai" />
+                    </div>
+                    <div class="tt">
+                        <p>Ngày Sinh:</p>
+                        <input type="text" value="@bn.NgaySinh" />
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="thong-tin">
+            <div class="tt-content">
+                <h4 style="color:white;font-size:15px">Thông Tin Bác Sĩ</h4>
+            </div>
+            <div class="tt-body">
+
+                <div class="tt">
+                    <p>Bác Sĩ:</p>
+                    @Html.DropDownList("MaNV", (IEnumerable<SelectListItem>)ViewBag.nv, new { @class = "form-control", id = "MaBSDropdown" })
+                </div>
+                <div class="tt">
+                    <p>Ghi Chú:</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt">
+                    <p>Lý Do:</p>
+                    <input type="text" value="" />
+                </div>
+                <div class="tt1">
+                    <button class="btn_class">Đăng Ký Khám</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="btn_d2">
+            <button class="btn_class"><a href="~/ChucNang/ChoKham">Chờ Khám</a></button>
+            <button class="btn_class"><a href="~/ChucNang/DaKham">Đã Khám</a></button>
+            <button class="btn_class"><a href="~/ChucNang/HuyKham">Hủy Khám</a></button>
+        </div>
+    </div>
+
+    <div class="ttt-bodtxs">
+        <div class="tolx-bar">
+            <div class="form-group form-inliness">
+                @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Nhập Vào Từ Khóa" })
+
+                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+            </div>
+            <button class="btn_class">Xóa</button>
+        </div>
+        <table id="xmxkxk" class="table">
+            <tr>
+                <th style="width:30px">STT</th>
+                <th><p>Mã Bệnh Nhân</p></th>
+                <th><p>Tên Bệnh Nhân</p></th>
+                <th><p>Giới Tính</p></th>
+                <th><p>Ngày Sinh</p></th>
+                <th><p>Nghề Nghiệp</p></th>
+                <th><p>Điện Thoại</p></th>
+                <th><p>Địa Chỉ</p></th>
+                <th><p>TS Bệnh</p></th>
+                <th><p>Ghi Chú</p></th>
+                <th><p>Tag ID</p></th>
+            </tr>
+            @{ var stt = 1;}
+            @foreach (quanLyPhongMach.Models.HoSoBN bn in ViewBag.hsbns)
+            {
+
+                <tr>
+                    <td>@stt</td>
+                    <td>@Html.DisplayFor(modelItem => bn.MaHS)</td>
+                    <td>@Html.DisplayFor(modelItem => bn.HoTen)</td>
+                    <td>@Html.DisplayFor(modelItem => bn.Phai)</td>
+                    <td>@Html.DisplayFor(modelItem => bn.NgaySinh)</td>
+                    <td>@Html.DisplayFor(modelItem => bn.NgheNghiep)</td>
+                    <td>@Html.DisplayFor(modelItem => bn.DienThoai)</td>
+                    <td>@Html.DisplayFor(modelItem => bn.DiaChi)</td>
+                    <td>@Html.DisplayFor(modelItem => bn.TSBenh)</td>
+                    <td>@Html.DisplayFor(modelItem => bn.GhiChu)</td>
+                    <td>@Html.DisplayFor(modelItem => bn.TagID)</td>
+
+                </tr>
+                stt++;
+            }
+
+        </table>
+
+    </div>
+</div>
+
+
+
+<script>
+
+    var btn5 = document.getElementById('btn-x2-4');
+    btn5.addEventListener('click', function () {
+
+        location.reload();
+    });
+
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('#xmxkxk tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                    var tdText = $(this).find('td:eq(1)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+

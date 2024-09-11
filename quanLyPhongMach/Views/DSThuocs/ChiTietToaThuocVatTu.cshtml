@@ -1,0 +1,122 @@
+﻿@model quanLyPhongMach.Models.DSThuoc
+
+@{
+    ViewBag.Title = " Chi Tiết  Thuốc - Vật Tư";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    .x1k2k21 {
+        width:400px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        border:1px solid #333;
+        border-radius:6px;
+        padding:5px;
+    }
+
+    .ff {
+        display:flex;
+        justify-content:space-between;
+    }
+</style>
+
+<div class="container">
+    <div class="x1k2k21">
+        <h4 style="font-size:22px;">Chi Tiết</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <div class="ff">
+                <dt>
+                    Tên Thuốc :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TenThuoc)
+                </dd>
+            </div>
+
+            <div class="ff">
+                <dt>
+                    Hoạt Chất
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.HoatChat)
+                </dd>
+            </div>
+
+            <div class="ff">
+                <dt>
+                    Loại Thuốc :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LoaiThuoc)
+                </dd>
+            </div>
+
+            <div class="ff">
+                <dt>
+                    Dơn Vị
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DonVi)
+                </dd>
+            </div>
+
+            <div class="ff">
+                <dt>
+                    Số Lượng Tồn
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SoLuongTon)
+                </dd>
+            </div>
+
+            <div class="ff">
+                <dt>
+                  Mã Hãng Sản Xuất
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MaHangSanXuat)
+                </dd>
+            </div>
+
+            <div class="ff">
+                <dt>
+                    Mã Quốc Gia :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.MaQuocGia)
+                </dd>
+            </div>
+
+            <div class="ff">
+                <dt>
+                    Ghi Chú :
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.GhiChu)
+                </dd>
+               
+            </div>
+            <div class="ff1" style="margin-top:10px">
+                <bu class="btn_class">@Html.ActionLink("Sửa", "SuaThuocVatTu", new { id = Model.MaThuoc })</bu>
+                <button class="btn_class">
+
+                    @Html.ActionLink("Quay Trở Lại", "ThuocVatTu")
+                </button>
+            </div>
+        </dl>
+    </div>
+  
+
+</div>

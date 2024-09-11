@@ -1,0 +1,153 @@
+﻿
+@{
+    ViewBag.Title = "Thống Kê Lãi Bán Thuốc - Thống Kê";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    input#SearchString {
+        height: 33px;
+        width: 300px;
+        padding: 0 15px;
+        border-radius: 5px;
+    }
+
+    .tkbt {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .tool-bar-thong-ke-ban-thuoc {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    input#data-timess,
+    input#data-times {
+        height: 33px;
+    }
+
+    .tong-cong {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 10px
+    }
+
+
+
+    .toolbar-ton-kho-thuoc {
+        display: flex;
+        gap: 10px;
+        width: auto;
+        height: auto;
+    }
+
+    input#SearchString {
+        height: 33px;
+        width: 300px;
+    }
+
+    .toolbar-s {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+
+
+
+    .tklbt {
+        display: flex;
+        gap: 10px;
+        align-items: center
+    }
+
+    .tool-bar-lai-ban-thuoc {
+        width: auto;
+        height: auto;
+        display: flex;
+        gap: 15px;
+    }
+
+    .table-thong-ke-ban-thuoc {
+        height: 600px;
+        width: 100%;
+        margin-top: 20px
+    }
+
+    .tong-tien {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-end;
+        padding-top: 10px
+    }
+
+    .xxss {
+        display:flex;
+        justify-content:space-between;
+    }
+
+</style>
+
+<div class="container">
+    <div class="xxss">
+        <div class="tool-bar-lai-ban-thuoc">
+            <div class="tklbt">
+                <p>Từ:</p>
+                <input type="date" id="dkkd" style="width:150px;height:33px" />
+            </div>
+            <div class="tklbt">
+                <p>Đến:</p>
+                <input type="date" id="sdkkd" style="width:150px;height:33px" />
+            </div>
+            <div class="tklbt">
+                <button class="btn_class" id="btn_123">Lấy Dữ Liệu</button>
+                <button class="btn_class" id="btn_124">Xem Trước</button>
+                <button class="btn_class" id="btn_125">In</button>
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inliness">
+                @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Nhập từ khóa  tìm kiếm" })
+
+                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+            </div>
+
+        }
+    </div>
+    <div class="table-thong-ke-ban-thuoc">
+        <table id="xmxkxk" class="table" style="margin-top:-2px">
+            <tr>
+                <th style="width:30px"></th>
+                <th><p>Tên Thuốc</p></th>
+                <th><p>Số Lô</p></th>
+                <th><p>Số Lượng</p></th>
+                <th><p>Đơn Vị</p></th>
+                <th><p>Ngày Bán</p></th>
+                <th><p>Đơn Giá Nhập</p></th>
+                <th><p>VAT(%)</p></th>
+                <th><p>Tổng Tiền Nhập</p></th>
+                <th><p>Đơn Giá Xuất</p></th>
+                <th><p>Tổng Tiền Xuất (VNĐ)</p></th>
+                <th><p>Lãi(VNĐ)</p></th>
+            </tr>
+
+            <tr>
+            </tr>
+
+
+        </table>
+
+    </div>
+    <div class="tong-tien">
+        <p>Tổng tiền Lãi thuốc</p>
+        <input type="text" value="00 VNĐ" />
+    </div>
+</div>

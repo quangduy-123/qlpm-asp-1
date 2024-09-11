@@ -1,0 +1,113 @@
+﻿
+
+@{
+    ViewBag.Title = "Lịch Hẹn - Chức Năng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Assets/CSS/ChucNang.css" rel="stylesheet" />
+}
+<style>
+    select#MaHSssDropdown {
+        width: 225px;
+    }
+
+    input.xkx222 {
+        width: 222px;
+    }
+
+    input.xkx2221 {
+        width: 222px;
+        height: 33px
+    }
+</style>
+
+<div class="container">
+    <div class="tool-bar-1">
+        <button class="btn_class">Thêm Hẹn</button>
+        <button class="btn_class">Sửa</button>
+        <button class="btn_class">Lưu</button>
+        <button class="btn_class">Xem Trước</button>
+        <button class="btn_class">In</button>
+        <button class="btn_class" id="bnt2x">Tạo Mới</button>
+    </div>
+
+    <div class="th21">
+        <div class="hen-gio">
+            <div class="x1">
+                <p>Bệnh Nhân:</p>
+                @Html.DropDownList("MaHS", (IEnumerable<SelectListItem>)ViewBag.bn, new { @class = "form-control", id = "MaHSssDropdown" })
+            </div>
+            <div class="x1">
+                <p>Bác Sĩ:</p>
+                @Html.DropDownList("MaNV", (IEnumerable<SelectListItem>)ViewBag.nvv, new { @class = "form-control", id = "MaBSssssDropdown" })
+            </div>
+            <div class="x1">
+                <p>Ngày Hẹn:</p>
+                <input type="date" class="xkx222" />
+            </div>
+            <div class="x1">
+                <p>Giờ Hẹn:</p>
+                <input type="time" class="xkx222" />
+            </div>
+        </div>
+        <div class="hen-gio">
+            <div class="x1">
+                <p>Lý Do:</p>
+                <input type="text" class="xkx2221" />
+            </div>
+            <div class="x1">
+                <p>Ghi Chú:</p>
+                <input type="text" class="xkx2221" />
+            </div>
+        </div>
+        <div class="btn_d2">
+            <button class="btn_class"><a href="~/ChucNang/ChoKham">Chờ Khám</a></button>
+        </div>
+    </div>
+    <div class="tool-bar-1  bn">
+        <button class="btn_class" id="btn-x2-1"><a href="~/ChucNang/ThemBenhNhan">Thêm BN</a></abbr></button>
+        <button class="btn_class">Thêm</button>
+        <button class="btn_class">Thêm - ĐK Khám</button>
+        <button class="btn_class">Hủy</button>
+    </div>
+    <div class="tltltl">
+        <div class="toolba-r2x">
+            <div class="form-group form-inliness">
+                @Html.TextBox("SearchString", "", new { @class = "form-control" })
+                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+            </div>
+            <div class="x2">
+                <p>Từ</p>
+                <input type="date" style="height:33px" />
+            </div>
+            <div class="x2">
+                <p>Đến</p>
+                <input type="date" style="height:33px" />
+            </div>
+            <div class="x2">
+                <button class="btn_class">Đăng Ký Khám</button>
+                <button class="btn_class">Xóa</button>
+            </div>
+        </div>
+        <div class="tbtb">
+            <table id="xmxkxk222" style="margin-top:-2px" class="table">
+                <tr>
+                    <th style="width:30px"></th>
+                    <th><p>Tên Bệnh Nhân</p></th>
+                    <th><p>Tên Bác Sĩ</p></th>
+                    <th><p>Ngày Hẹn</p></th>
+                    <th><p>Nội Dung</p></th>
+                    <th><p>Ghi Chú</p></th>
+                    <th><p>Tag ID</p></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    var btn5 = document.getElementById('bnt2x');
+    btn5.addEventListener('click', function () {
+
+        location.reload();
+    });
+</script>

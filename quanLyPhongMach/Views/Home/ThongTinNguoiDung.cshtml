@@ -1,0 +1,137 @@
+﻿@model quanLyPhongMach.Models.NhanVien
+@{
+    ViewBag.Title = "Thông Tin Người Dùng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<style>
+    .ttnd {
+        color: black;
+    }
+
+    input[type="password"] {
+        padding: 0 10px;
+    }
+
+    h4 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .toolbar {
+        margin: 12px
+    }
+
+    .tt {
+        width: 330px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .ttnd-1 {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    input[type="password"] {
+        width: 173px;
+    }
+
+    .ttnd-body {
+        width: 900px;
+        display: flex;
+        gap: 20px;
+        border: 1px solid #333;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        padding: 10px;
+    }
+
+    .nv-form-clone1 {
+        border: 1px solid #333;
+        width: 150px;
+        height: 150px;
+    }
+</style>
+
+<div class="container">
+    <div class="ttnd">
+        <div class="toolbar">
+            <button class="btn_class" id="btn_cl" onclick="window.location.href='@Url.Action("ThongTinNguoiDung", new { changePassword = "true" })'">Đổi Mật Khẩu</button>
+        </div>
+        <h4>Thông Tin Người Dùng</h4>
+        <div class="ttnd-body">
+            <div class="ttnd-1">
+                <div class="tt">
+                    <p>Tên Đăng Nhập :</p>
+                    <input type="text" value="@Model.TaiKhoan" />
+                </div>
+                <div class="tt">
+                    <p>Chức Vụ :</p>
+                    <input type="text" value="@Model.ChucVu" />
+                </div>
+                <div class="tt">
+                    <p>Địa Chỉ :</p>
+                    <input type="text" value="@Model.DiaChi" />
+                </div>
+                <div class="tt">
+                    <p>Chuyên Môn :</p>
+                    <input type="text" value="@Model.ChuyenMon" />
+                </div>
+                <div class="tt">
+                    <p>Điện Thoại :</p>
+                    <input type="text" value="@Model.DienThoai" />
+                </div>
+                <div class="tt">
+                    <p>Mật Khẩu :</p>
+                    <input type="password" value="@Model.MatKhauTC" />
+                </div>
+            </div>
+            <div class="ttnd-1">
+                <div class="tt">
+                    <p>Họ Và Tên :</p>
+                    <input type="text" value="@Model.TenNV" />
+                </div>
+                <div class="tt">
+                    <p>Giới Tính :</p>
+                    <input type="text" value="@Model.Phai" />
+                </div>
+                <div class="tt">
+                    <p>Ngày Sinh :</p>
+                    <input type="text" value="@Model.NgaySinh" />
+                </div>
+                <div class="tt">
+                    <p>Ngoại Ngữ:</p>
+                    <input type="text" value="@Model.NgoaiNgu" />
+                </div>
+                <div class="tt">
+                    <p>Mức Lương :</p>
+                    <input type="text" value="@Model.MucLuong" />
+                </div>
+                <div class="tt">
+
+                    @foreach (quanLyPhongMach.Models.DonViSuDung dv in ViewBag.dv)
+                    {
+
+                        if (Model.DonVi == dv.IDDonVi)
+                        {
+                            <p>Đơn Vị :</p>
+                            <input type="text" value="@dv.TenDonVi" />
+                        }
+                    }
+
+                </div>
+            </div>
+            <div class="nv-form" data-add-back-btn="@Model.Hinh">
+                <div class="nv-form-clone1">
+                    <img src="@Model.Hinh" id="image" />
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+

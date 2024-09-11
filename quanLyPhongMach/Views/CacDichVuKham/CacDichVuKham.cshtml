@@ -1,0 +1,60 @@
+﻿@model IEnumerable<quanLyPhongMach.Models.CacDichVuKham>
+
+@{
+    ViewBag.Title = "Các Dịch Vụ Khám - Dịch Vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+
+<div class="container">
+    <h2>Các Dịch Vụ Khám</h2>
+    <p>
+        <a href="@Url.Action("ThemMoiDichVuKham")"><button class="btn btn_class btn-primary">Thêm Mới</button></a>
+    </p>
+
+    <table class="table">
+        <tr>
+            <th>
+                <p>STT</p>
+            </th>
+            <th>
+                <p>Tên Dịch Vụ</p>
+            </th>
+            <th>
+                <p>Chi Phí</p>
+            </th>
+
+            <th></th>
+        </tr>
+        @{
+            var stt = 1;
+        }
+        @foreach (quanLyPhongMach.Models.CacDichVuKham abc in Model)
+        {
+            <tr>
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => abc.TenDV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => abc.ChiPhi)
+                </td>
+
+                <td>
+                    <button class="btn_class">  
+                    @Html.ActionLink("Sửa", "SuaDichVuKham", new { id = abc.ID }) 
+                    </button>
+                    <button class="btn_class">    
+                    @Html.ActionLink("Xóa", "XoaDichVu", new { id = abc.ID })
+                    </button>
+
+                </td>
+
+            </tr>
+            stt++;
+        }
+    </table>
+</div>

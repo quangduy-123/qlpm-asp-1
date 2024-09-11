@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewBag.Title = "Thống Kê Thu Khám - Thống Kê";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @Styles.Render("~/Assets/CSS/Home.css")
+    @Styles.Render("~/Assets/CSS/tableandbutton.css")
+}
+<style>
+
+    input#SearchString {
+        height: 33px;
+        width: 300px;
+        padding: 0 15px;
+        border-radius: 5px;
+    }
+
+    .tkbt {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .tool-bar-thong-ke-ban-thuoc {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    input#data-timess,
+    input#data-times {
+        height: 33px;
+    }
+
+    .tong-cong {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        padding-top: 10px
+    }
+
+
+
+    .toolbar-ton-kho-thuoc {
+        display: flex;
+        gap: 10px;
+        width: auto;
+        height: auto;
+    }
+
+    input#SearchString {
+        height: 33px;
+        width: 300px;
+    }
+
+    .toolbar-s {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+
+
+
+    .tklbt {
+        display: flex;
+        gap: 10px;
+        align-items: center
+    }
+
+    .tool-bar-lai-ban-thuoc {
+        width: auto;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+    }
+
+    .table-thong-ke-ban-thuoc {
+        height: 600px;
+        width: 100%;
+        margin-top: 20px
+    }
+
+    .tong-tien {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: flex-end;
+        padding-top: 10px
+    }
+</style>
+
+
+<div class="container">
+    <div class="tool-bar-lai-ban-thuoc">
+        <div class="tklbt">
+            <div class="tklbt">
+                <p>Từ:</p>
+                <input type="date" id="dkkd" style="width:150px;height:33px" />
+            </div>
+            <div class="tklbt">
+                <p>Đến:</p>
+                <input type="date" id="sdkkd" style="width:150px;height:33px" />
+            </div>
+            <div class="tklbt">
+                <button class="btn_class" id="btn_1233">Lấy Dữ Liệu</button>
+                <button class="btn_class" id="btn_1243">Xem Trước</button>
+                <button class="btn_class" id="btn_1253">In</button>
+            </div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="form-group form-inliness">
+                @Html.TextBox("SearchString", "", new { @class = "form-control", placeholder = "Nhập từ khóa  tìm kiếm" })
+
+                <input type="submit" id="text-thuoc" class="btn_class btn-defaultss" value="Tìm Kiếm" />
+            </div>
+
+        }
+    </div>
+
+    <div class="table-thong-ke-thu-kham">
+        <table id="xmxkxk" class="table">
+            <tr>
+                <th style="width:30px">STT</th>
+                <th><p>Tên Bệnh Nhân</p></th>
+                <th><p>Ngày Khám</p></th>
+                <th><p>Bác Sĩ</p></th>
+                <th><p>Dịch Vụ</p></th>
+                <th><p>Giá Dịch Vụ(VNĐ)</p></th>
+                <th><p>Thực Thu(VNĐ)</p></th>
+                <th><p>Đã TT</p></th>
+            </tr>
+            @{ var stt = 1;}
+            @foreach (quanLyPhongMach.Models.PhieuThuChiTiet pt in ViewBag.pt)
+            {
+
+                <tr>
+                    <td>@stt</td>
+                    <td>@Html.DisplayFor(modelItem => pt.MaHS)</td>
+                    <td>@Html.DisplayFor(modelItem => pt.NgayKham)</td>
+                    @foreach (quanLyPhongMach.Models.NhanVien nv in ViewBag.nv)
+                    {
+                        if (pt.MaNV == nv.MaNV)
+                        {
+                            <td>@Html.DisplayFor(modelItem => nv.TenNV)</td>
+                        }
+                    }
+                    @foreach (quanLyPhongMach.Models.CacDichVuKham dv in ViewBag.dvs)
+                    {
+                        if (pt.IDDichVu == dv.ID)
+                        {
+                            <td>@Html.DisplayFor(modelItem => dv.TenDV)</td>
+                        }
+                    }
+                    @foreach (quanLyPhongMach.Models.CacDichVuKham dv in ViewBag.dvs)
+                    {
+                        if (pt.IDDichVu == dv.ID)
+                        {
+                            <td>@Html.DisplayFor(modelItem => dv.ChiPhi)</td>
+                        }
+                    }
+                    <td></td>
+                    <td>@Html.DisplayFor(modelItem => pt.DaThanhToan)</td>
+                </tr>
+                stt++;
+            }
+        </table>
+
+    </div>
+    <div class="tong-cong">
+        <p>Tổng Cộng Tiền Thu Khám</p>
+        <input type="text" value="" readonly />
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('#xmxkxk tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 2 (Tên Thuốc)
+                    var tdText = $(this).find('td:eq(1)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+
+
+    // thuốc bán hết
+    $(document).ready(function () {
+        $('#thuoc-ban-het').click(function () {
+            $('.table-ton-kho-thuoc tr').each(function () {
+                var quantity = parseInt($(this).find('td:eq(4)').text());
+                if (quantity === 0 || $(this).is('th')) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+    });
+
+    // Lấy tất cả các hàng trong bảng
+    var rows = document.querySelectorAll("#xmxkxk tr");
+    var total = 0;
+
+    // Lặp qua từng hàng
+    for (var i = 1; i < rows.length; i++) {
+        // Lấy giá trị trong cột "Tổng Cộng (VNĐ)" của hàng hiện tại
+        var cell = rows[i].querySelector("td:nth-last-child(6)");
+        var value = parseFloat(cell.textContent.trim().replace("VNĐ", "").replace(",", ""));
+
+        // Kiểm tra nếu giá trị không phải là NaN
+        if (!isNaN(value)) {
+            // Thêm giá trị này vào tổng cộng
+            total += value;
+        }
+    }
+
+    // Đặt giá trị của input có class là "tong-cong" thành tổng cộng
+    document.querySelector(".tong-cong input").value = total.toLocaleString('vi-VN') + " VNĐ";
+
+</script>

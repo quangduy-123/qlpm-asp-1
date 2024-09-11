@@ -1,0 +1,312 @@
+﻿
+@{
+    ViewBag.Title = "Toa Thuốc Mẫu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <link href="~/Assets/CSS/tableandbutton.css" rel="stylesheet" />
+}
+
+
+<style>
+    input#SearchString,
+    input#TenDonThuoc,
+    input#IdDonThuoc {
+        width: 250px;
+        height: 33px;
+        margin-top: 15px;
+        padding: 0 10px
+    }
+
+    .form-control::placeholder {
+        color: #999;
+    }
+
+
+    .form-control::-webkit-input-placeholder {
+        color: #999;
+        padding: 0 10px
+    }
+
+    .form-control:-moz-placeholder {
+        color: #999;
+    }
+
+    .form-control::-moz-placeholder {
+        color: #999;
+    }
+
+    .form-control:-ms-input-placeholder {
+        color: #999;
+    }
+
+    .toathuoc-mau {
+        width: 100%;
+        height: auto;
+        display: flex;
+        gap: 10px
+    }
+
+    .form-box-1 {
+        display: flex;
+        justify-content: space-between;
+        width: 350px;
+    }
+
+    .form_data_matoa {
+        display: flex;
+        flex-direction: column;
+        gap: 5px
+    }
+
+    .table-dd22x {
+        width: 100%;
+        height: 100%;
+        border: 1px solid #333;
+    }
+
+    table#table-dkkd {
+        width: 100%;
+        border: 1px solid #333;
+        margin-top: -2px
+    }
+
+    .donthuoc_chitiet_matoa {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 44px;
+    }
+</style>
+
+<div class="container">
+    <div class="toathuoc-mau">
+        <div class="table_chitietdichvu">
+            <button class="btn_class" id="xoaToaBtn">Xóa Toa</button>
+
+
+            @using (Html.BeginForm())
+            {
+                <div class="form-group form-inline">
+                    @Html.TextBox("SearchString", "", new { @class = "form-control" })
+                    <input type="submit" class="btn_class btn-default" value="Tìm Kiếm" />
+                </div>
+            }
+
+
+
+            <table id="toaTable" border="1" width="100%">
+                <tr>
+                    <th style="width:15px"></th>
+                    <th style="width:15px">STT</th>
+                    <th>Mã Toa</th>
+                    <th>Tên Toa Thuốc</th>
+                </tr>
+                @{
+                    var stt = 1;
+                }
+                @foreach (quanLyPhongMach.Models.DonThuocMau donThuocMau in ViewBag.dtm)
+                {
+                    <tr data-id="@donThuocMau.IdDonThuoc">
+                        <td><input type="checkbox" class="toaCheckbox" value="@donThuocMau.IdDonThuoc" /></td>
+                        <td>@stt</td>
+                        <td>@donThuocMau.IdDonThuoc</td>
+                        <td>@donThuocMau.TenDonThuoc</td>
+                    </tr>
+                    stt++;
+                }
+            </table>
+
+            <form id="themToaForm" action="#" method="post">
+                @using (Html.BeginForm("ThemToa", "DSThuocs", FormMethod.Post, new { id = "themToaForm" }))
+                {
+                    <div class="form-group form-inline">
+                        @Html.TextBox("IdDonThuoc", "", new { @class = "form-control", placeholder = "Mã Toa" })
+                        @Html.TextBox("TenDonThuoc", "", new { @class = "form-control", placeholder = "Tên Toa Thuốc" })
+                        <input type="button" id="themToaBtn" class="btn_class n-defaultss" value="Thêm Toa" />
+                    </div>
+                }
+            </form>
+        </div>
+
+
+        <div class="donthuoc_chitiet_matoa">
+            <div class="toolbar">
+                @foreach (quanLyPhongMach.Models.DonThuocMau donThuocMau in ViewBag.dtm)
+                {
+
+                    <div class="form_data_matoa" style="display:none">
+                        <div class="form-box-1">
+                            <p>Mã Toa :</p>
+                            <input type="text" id="hienthi-matoa" value="@donThuocMau.IdDonThuoc" />
+                        </div>
+                        <div class="form-box-1">
+                            <p>Tên Toa Thuốc:</p>
+                            <input type="text" value="@donThuocMau.TenDonThuoc" />
+                        </div>
+                    </div>
+
+                }
+                <div class="form_data_matoa" style="display:flex;flex-direction:column">
+                    <div class="form-box-1">
+                        <p>Mã Toa :</p>
+                        <input type="text" id="hienthi-matoa" />
+                    </div>
+                    <div class="form-box-1">
+                        <p>Tên Toa Thuốc:</p>
+                        <input type="text" />
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            <div class="table-dd22x">
+                <table id="table-dkkd" border="1" width="100%">
+                    <tr>
+                        <th style="width:200px">Tên Thuốc</th>
+                        <th style="width:200px">Ngày Thuốc</th>
+                        <th style="width:100px">Đơn Vị</th>
+                        <th style="width:100px">Sáng</th>
+                        <th style="width:100px">Trưa</th>
+                        <th style="width:100px">Chiều</th>
+                        <th style="width:100px">Tối</th>
+                        <th style="width:360px">Ghi Chú</th>
+                    </tr>
+
+                    @foreach (var donthuoc in ViewBag.dt)
+                    {
+                        <tr>
+                            <td>
+                                <select name="TenThuoc">
+                                    @foreach (var donvis in ViewBag.dst)
+                                    {
+                                        <option value="@donvis.TenThuoc">@donvis.TenThuoc</option>
+                                    }
+                                </select>
+                            </td>
+                            <td>@donthuoc.NgayThuoc</td>
+                            <td>
+                                <select name="DonViId">
+                                    @foreach (var donvi in ViewBag.DVT)
+                                    {
+                                        <option value="@donvi.Id">@donvi.TenDonVi</option>
+                                    }
+                                </select>
+                            </td>
+                            <td><input type="text" name="Sang" value="@donthuoc.Sang" /></td>
+                            <td><input type="text" name="Trua" value="@donthuoc.Trua" /></td>
+                            <td><input type="text" name="Chieu" value="@donthuoc.Chieu" /></td>
+                            <td><input type="text" name="Toi" value="@donthuoc.Toi" /></td>
+                            <td><input type="text" name="GhiChu" value="@donthuoc.GhiChu" /></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Bắt sự kiện khi form được submit
+        $('form').submit(function (e) {
+            // Ngăn chặn hành động mặc định của form
+            e.preventDefault();
+            // Lấy giá trị từ input tìm kiếm
+            var searchString = $('#SearchString').val().toLowerCase();
+            // Lặp qua từng hàng trong bảng
+            $('table tr').each(function () {
+                // Kiểm tra xem hàng có phải là header không
+                if (!$(this).is(':first-child')) {
+                    // Lấy giá trị của cột thứ 3 (Tên Toa Thuốc)
+                    var tdText = $(this).find('td:eq(2)').text().toLowerCase();
+                    // So sánh với chuỗi tìm kiếm
+                    if (tdText.indexOf(searchString) === -1) {
+                        // Ẩn hàng nếu không khớp
+                        $(this).hide();
+                    } else {
+                        // Hiện hàng nếu khớp
+                        $(this).show();
+                    }
+                }
+            });
+        });
+    });
+
+ $(document).ready(function() {
+        $('#themToaBtn').click(function() {
+            var idDonThuoc = $('input[name="IdDonThuoc"]').val();
+            var tenDonThuoc = $('input[name="TenDonThuoc"]').val();
+
+            $.ajax({
+                url: '@Url.Action("ThemToa", "DSThuocs")',
+                type: 'POST',
+                data: {
+                    IdDonThuoc: idDonThuoc,
+                    TenDonThuoc: tenDonThuoc
+                },
+                success: function(response) {
+                    if(response.success) {
+                        // Append new row to the table
+                        var newRow = `<tr data-id="${response.newToa.IdDonThuoc}">
+                            <td><input type="checkbox" class="toaCheckbox" value="${response.newToa.IdDonThuoc}" /></td>
+                            <td>${response.newToa.STT}</td>
+                            <td>${response.newToa.IdDonThuoc}</td>
+                            <td>${response.newToa.TenDonThuoc}</td>
+                        </tr>`;
+                        $('#toaTable').append(newRow);
+                    } else {
+                        alert('Error adding toa thuốc: ' + response.message);
+                    }
+                },
+                error: function() {
+                    alert('There was an error processing your request.');
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        // Xử lý sự kiện khi nhấn nút "Xóa Toa"
+        $("#xoaToaBtn").click(function () {
+            // Lấy danh sách các hàng đã được chọn
+            var selectedRows = $("#toaTable").find("input:checked").closest("tr");
+
+            // Xác nhận xóa
+            if (selectedRows.length > 0) {
+                if (confirm("Bạn có chắc chắn muốn xóa những toa được chọn?")) {
+                    // Thực hiện xóa từng hàng đã chọn
+                    selectedRows.each(function () {
+                        $(this).remove(); // Xóa hàng
+                        // Thêm các đoạn mã xử lý xóa toa ở đây
+                    });
+                }
+            } else {
+                alert("Vui lòng chọn ít nhất một toa để xóa.");
+            }
+        });
+    });
+
+
+    $(document).ready(function () {
+        $('.toaCheckbox').change(function () {
+            if (this.checked) {
+                var idDonThuoc = $(this).closest('tr').data('id');
+                var form_data_matoa = $('.donthuoc_chitiet_matoa').find('.form_data_matoa');
+                form_data_matoa.hide(); // Ẩn tất cả các form_data_matoa trước
+                form_data_matoa.each(function () {
+                    var id = $(this).find('#hienthi-matoa').val();
+                    if (id == idDonThuoc) {
+                        $(this).show(); // Hiển thị form_data_matoa tương ứng
+                    }
+                });
+            } else {
+                $('.donthuoc_chitiet_matoa .form_data_matoa').hide(); // Ẩn nếu checkbox được bỏ chọn
+            }
+        });
+    });
+
+</script>
